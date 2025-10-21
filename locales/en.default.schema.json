@@ -87,15 +87,15 @@
             "name": "Page Dimensions",
             "settings": {
                 "page_dimensions_header": {
-                    "content": "Page Dimensions"
+                    "content": "Default content width"
                 },
                 "page_width_desktop": {
-                    "label": "Page Width Desktop",
-                    "info": "The page width is the width of the page in desktop."
+                    "label": "Desktop width",
+                    "info": "The content width for 1440px width screen."
                 },
                 "page_width_mobile": {
-                    "label": "Page Width Mobile",
-                    "info": "The page width is the width of the page in mobile."
+                    "label": "Mobile width",
+                    "info": "The content width for 400px width screen."
                 }
             }
         },

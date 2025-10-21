@@ -218,24 +218,18 @@
         "content": "t:settings_schema.page_dimensions.settings.page_dimensions_header.content"
       },
       {
-        "type": "range",
+        "type": "number",
         "id": "page_width_desktop",
         "label": "t:settings_schema.page_dimensions.settings.page_width_desktop.label",
-        "default": 95,
-        "min": 50,
-        "max": 100,
-        "step": 1,
-        "unit": "vw"
+        "info": "t:settings_schema.page_dimensions.settings.page_width_desktop.info",
+        "default": 1060
       },
       {
         "type": "range",
         "id": "page_width_mobile",
         "label": "t:settings_schema.page_dimensions.settings.page_width_mobile.label",
-        "default": 88,
-        "min": 50,
-        "max": 100,
-        "step": 1,
-        "unit": "vw"
+        "info": "t:settings_schema.page_dimensions.settings.page_width_mobile.info",
+        "default": 352
       }
     ]
   },
