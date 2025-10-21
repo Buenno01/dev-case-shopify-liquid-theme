@@ -1,11 +1,10 @@
 <style>
-
-  {% for scheme in settings.color_schemes -%}
-    {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
-    {% if forloop.index == 1 -%}
+  {%- for scheme in settings.color_schemes -%}
+    {%- assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id -%}
+    {%- if forloop.index == 1 -%}
       :root,
-    {%- endif %}
-    {%  capture scheme_variables %}
+    {%- endif -%}
+    {%- capture scheme_variables -%}
       --rgb-background-primary: {{ scheme.settings.background-primary.red }},{{ scheme.settings.background-primary.green }},{{ scheme.settings.background-primary.blue }};
       --rgb-background-secondary: {{ scheme.settings.background-secondary.red }},{{ scheme.settings.background-secondary.green }},{{ scheme.settings.background-secondary.blue }};
       --rgb-background-tertiary: {{ scheme.settings.background-tertiary.red }},{{ scheme.settings.background-tertiary.green }},{{ scheme.settings.background-tertiary.blue }};
@@ -39,47 +38,11 @@
       --gradient-primary: {{ scheme.settings.gradient-primary }};
       --gradient-secondary: {{ scheme.settings.gradient-secondary }};
       --gradient-mute: {{ scheme.settings.gradient-mute }};
+    {%- endcapture -%}
+  {%- endfor -%}
 
-        --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-      {% if scheme.settings.background_gradient != empty %}
-        --gradient-background: {{ scheme.settings.background_gradient }};
-      {% else %}
-        --gradient-background: {{ scheme.settings.background }};
-      {% endif %}
-
-      {% liquid
-        assign background_color = scheme.settings.background
-        assign background_color_brightness = background_color | color_brightness
-        if background_color_brightness <= 26
-          assign background_color_contrast = background_color | color_lighten: 50
-        elsif background_color_brightness <= 65
-          assign background_color_contrast = background_color | color_lighten: 5
-        else
-          assign background_color_contrast = background_color | color_darken: 25
-        endif
-      %}
-
-      --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-      --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
-      --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
-      --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
-      --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
-      --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-      --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
-      --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
-      --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-      --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
-      --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
-      --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
-      --color-heading: {{ scheme.settings.heading.red }},{{ scheme.settings.heading.green }},{{ scheme.settings.heading.blue }};
-    {% endcapture %}
-    .color-{{ scheme.id }} {
-      {{ scheme_variables }}
-    }
-  {% endfor %}
-
-  {{ scheme_classes | prepend: 'body' }} {
-    color: rgba(var(--color-foreground), 0.75);
-    background-color: rgb(var(--color-background));
+  {{- scheme_classes | prepend: ' body' }} {
+    color: var(--color-text-body-primary);
+    background-color: var(--color-background-primary);
   }
 </style>
