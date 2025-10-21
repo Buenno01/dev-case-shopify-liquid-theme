@@ -1,0 +1,21 @@
+{%- comment -%}
+    Accepts:
+    - min: Minumum pixels  
+    - max: Maximum pixels
+{%- endcomment -%}
+
+{%- liquid
+    assign designed_screen = 1440
+    assign target_screen = designed_screen | divided_by: 100.0 | times: 0.75
+    assign clamp_ratio = 0.75 | divided_by: target_screen
+    if min <= max
+        assign min_value = min | divided_by: 10.0
+        assign max_value = max | divided_by: 10.0
+        assign clamp_value = max_value | times: clamp_ratio
+    else
+        assign min_value = 1.6
+        assign max_value = 1.6
+        assign clamp_value = 100
+    endif
+-%}
+clamp({{ min_value }}rem, {{ clamp_value }}vw, {{ max_value }}rem);

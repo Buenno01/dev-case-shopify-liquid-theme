@@ -1,5 +1,7 @@
 <style>
     :root {
+        font-size: 10px;
+
         /* Container variable */
         --page-width: {{ settings.page_width_desktop |  divided_by: 1440 |  times: 100 }}vw;
 
@@ -22,6 +24,12 @@
         --color-text-body-primary: rgba(var(--rgba-text-body-primary));
         --color-text-body-secondary: rgba(var(--rgba-text-body-secondary));
         --color-text-body-invert: rgba(var(--rgba-text-body-invert));
+
+        /* Font size variables */
+        --font-size-heading-1: {% render 'design.clamp' with min: settings.heading_1_min, max: settings.heading_1_max %};
+        --font-size-heading-2: {% render 'design.clamp' with min: settings.heading_2_min, max: settings.heading_2_max %};
+        --font-size-body: {% render 'design.clamp' with min: settings.body_min, max: settings.body_max %};
+        --font-size-body-large: {% render 'design.clamp' with min: settings.body_large_min, max: settings.body_large_max %};
     }
 
     @media (max-width: 768px) {
