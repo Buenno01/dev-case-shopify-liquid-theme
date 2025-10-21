@@ -1,0 +1,32 @@
+<style>
+    :root {
+        /* Container variable */
+        --page-width: {{ settings.page_width_desktop |  divided_by: 1440 |  times: 100 }}vw;
+
+        /* Font variables */
+        --font-helvetica-neue: 'Helvetica Neue', sans-serif;
+        --font-product-sans: 'Product Sans', sans-serif;
+
+        /* Color variables */
+        --background-primary: rgba(var(--rgba-background-primary));
+        --background-secondary: rgba(var(--rgba-background-secondary));
+        --background-tertiary: rgba(var(--rgba-background-tertiary));
+        --background-invert: rgba(var(--rgba-background-invert));
+        --accent-primary: rgba(var(--rgba-accent-primary));
+        --accent-secondary: rgba(var(--rgba-accent-secondary));
+        --accent-mute: rgba(var(--rgba-accent-mute));
+        --surface-primary: rgba(var(--rgba-surface-primary));
+        --text-heading-primary: rgba(var(--rgba-text-heading-primary));
+        --text-heading-secondary: rgba(var(--rgba-text-heading-secondary));
+        --text-heading-invert: rgba(var(--rgba-text-heading-invert));
+        --text-body-primary: rgba(var(--rgba-text-body-primary));
+        --text-body-secondary: rgba(var(--rgba-text-body-secondary));
+        --text-body-invert: rgba(var(--rgba-text-body-invert));
+    }
+
+    @media (max-width: 768px) {
+        :root {
+            --page-width: {{ settings.page_width_mobile |  divided_by: 400 |  times: 100 }}vw;
+        }
+    }
+</style>

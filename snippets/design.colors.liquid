@@ -1,0 +1,85 @@
+<style>
+
+  {% for scheme in settings.color_schemes -%}
+    {% assign scheme_classes = scheme_classes | append: ', .color-' | append: scheme.id %}
+    {% if forloop.index == 1 -%}
+      :root,
+    {%- endif %}
+    {%  capture scheme_variables %}
+      --rgb-background-primary: {{ scheme.settings.background-primary.red }},{{ scheme.settings.background-primary.green }},{{ scheme.settings.background-primary.blue }};
+      --rgb-background-secondary: {{ scheme.settings.background-secondary.red }},{{ scheme.settings.background-secondary.green }},{{ scheme.settings.background-secondary.blue }};
+      --rgb-background-tertiary: {{ scheme.settings.background-tertiary.red }},{{ scheme.settings.background-tertiary.green }},{{ scheme.settings.background-tertiary.blue }};
+      --rgb-background-invert: {{ scheme.settings.background-invert.red }},{{ scheme.settings.background-invert.green }},{{ scheme.settings.background-invert.blue }};
+      --rgb-accent-primary: {{ scheme.settings.accent-primary.red }},{{ scheme.settings.accent-primary.green }},{{ scheme.settings.accent-primary.blue }};
+      --rgb-accent-secondary: {{ scheme.settings.accent-secondary.red }},{{ scheme.settings.accent-secondary.green }},{{ scheme.settings.accent-secondary.blue }};
+      --rgb-accent-mute: {{ scheme.settings.accent-mute.red }},{{ scheme.settings.accent-mute.green }},{{ scheme.settings.accent-mute.blue }};
+      --rgb-surface-primary: {{ scheme.settings.surface-primary.red }},{{ scheme.settings.surface-primary.green }},{{ scheme.settings.surface-primary.blue }};
+      --rgb-text-heading-primary: {{ scheme.settings.text-heading-primary.red }},{{ scheme.settings.text-heading-primary.green }},{{ scheme.settings.text-heading-primary.blue }};
+      --rgb-text-heading-secondary: {{ scheme.settings.text-heading-secondary.red }},{{ scheme.settings.text-heading-secondary.green }},{{ scheme.settings.text-heading-secondary.blue }};
+      --rgb-text-heading-invert: {{ scheme.settings.text-heading-invert.red }},{{ scheme.settings.text-heading-invert.green }},{{ scheme.settings.text-heading-invert.blue }};
+      --rgb-text-body-primary: {{ scheme.settings.text-body-primary.red }},{{ scheme.settings.text-body-primary.green }},{{ scheme.settings.text-body-primary.blue }};
+      --rgb-text-body-secondary: {{ scheme.settings.text-body-secondary.red }},{{ scheme.settings.text-body-secondary.green }},{{ scheme.settings.text-body-secondary.blue }};
+      --rgb-text-body-invert: {{ scheme.settings.text-body-invert.red }},{{ scheme.settings.text-body-invert.green }},{{ scheme.settings.text-body-invert.blue }};
+
+      --rgba-background-primary: {{ scheme.settings.background-primary.red }},{{ scheme.settings.background-primary.green }},{{ scheme.settings.background-primary.blue }},{{ scheme.settings.background-primary.alpha }};
+      --rgba-background-secondary: {{ scheme.settings.background-secondary.red }},{{ scheme.settings.background-secondary.green }},{{ scheme.settings.background-secondary.blue }},{{ scheme.settings.background-secondary.alpha }};
+      --rgba-background-tertiary: {{ scheme.settings.background-tertiary.red }},{{ scheme.settings.background-tertiary.green }},{{ scheme.settings.background-tertiary.blue }},{{ scheme.settings.background-tertiary.alpha }};
+      --rgba-background-invert: {{ scheme.settings.background-invert.red }},{{ scheme.settings.background-invert.green }},{{ scheme.settings.background-invert.blue }},{{ scheme.settings.background-invert.alpha }};
+      --rgba-accent-primary: {{ scheme.settings.accent-primary.red }},{{ scheme.settings.accent-primary.green }},{{ scheme.settings.accent-primary.blue }};
+      --rgba-accent-secondary: {{ scheme.settings.accent-secondary.red }},{{ scheme.settings.accent-secondary.green }},{{ scheme.settings.accent-secondary.blue }},{{ scheme.settings.accent-secondary.alpha }};
+      --rgba-accent-mute: {{ scheme.settings.accent-mute.red }},{{ scheme.settings.accent-mute.green }},{{ scheme.settings.accent-mute.blue }},{{ scheme.settings.accent-mute.alpha }};
+      --rgba-surface-primary: {{ scheme.settings.surface-primary.red }},{{ scheme.settings.surface-primary.green }},{{ scheme.settings.surface-primary.blue }},{{ scheme.settings.surface-primary.alpha }};
+      --rgba-text-heading-primary: {{ scheme.settings.text-heading-primary.red }},{{ scheme.settings.text-heading-primary.green }},{{ scheme.settings.text-heading-primary.blue }},{{ scheme.settings.text-heading-primary.alpha }};
+      --rgba-text-heading-secondary: {{ scheme.settings.text-heading-secondary.red }},{{ scheme.settings.text-heading-secondary.green }},{{ scheme.settings.text-heading-secondary.blue }};
+      --rgba-text-heading-invert: {{ scheme.settings.text-heading-invert.red }},{{ scheme.settings.text-heading-invert.green }},{{ scheme.settings.text-heading-invert.blue }},{{ scheme.settings.text-heading-invert.alpha }};
+      --rgba-text-body-primary: {{ scheme.settings.text-body-primary.red }},{{ scheme.settings.text-body-primary.green }},{{ scheme.settings.text-body-primary.blue }},{{ scheme.settings.text-body-primary.alpha }};
+      --rgba-text-body-secondary: {{ scheme.settings.text-body-secondary.red }},{{ scheme.settings.text-body-secondary.green }},{{ scheme.settings.text-body-secondary.blue }},{{ scheme.settings.text-body-secondary.alpha }};
+      --rgba-text-body-invert: {{ scheme.settings.text-body-invert.red }},{{ scheme.settings.text-body-invert.green }},{{ scheme.settings.text-body-invert.blue }},{{ scheme.settings.text-body-invert.alpha }};
+
+      --gradient-primary: {{ scheme.settings.gradient-primary }};
+      --gradient-secondary: {{ scheme.settings.gradient-secondary }};
+      --gradient-mute: {{ scheme.settings.gradient-mute }};
+
+        --color-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+      {% if scheme.settings.background_gradient != empty %}
+        --gradient-background: {{ scheme.settings.background_gradient }};
+      {% else %}
+        --gradient-background: {{ scheme.settings.background }};
+      {% endif %}
+
+      {% liquid
+        assign background_color = scheme.settings.background
+        assign background_color_brightness = background_color | color_brightness
+        if background_color_brightness <= 26
+          assign background_color_contrast = background_color | color_lighten: 50
+        elsif background_color_brightness <= 65
+          assign background_color_contrast = background_color | color_lighten: 5
+        else
+          assign background_color_contrast = background_color | color_darken: 25
+        endif
+      %}
+
+      --color-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+      --color-background-contrast: {{ background_color_contrast.red }},{{ background_color_contrast.green }},{{ background_color_contrast.blue }};
+      --color-shadow: {{ scheme.settings.shadow.red }},{{ scheme.settings.shadow.green }},{{ scheme.settings.shadow.blue }};
+      --color-button: {{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }};
+      --color-button-text: {{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }};
+      --color-secondary-button: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+      --color-secondary-button-text: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+      --color-link: {{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }};
+      --color-badge-foreground: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+      --color-badge-background: {{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }};
+      --color-badge-border: {{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }};
+      --payment-terms-background-color: rgb({{ scheme.settings.background.rgb }});
+      --color-heading: {{ scheme.settings.heading.red }},{{ scheme.settings.heading.green }},{{ scheme.settings.heading.blue }};
+    {% endcapture %}
+    .color-{{ scheme.id }} {
+      {{ scheme_variables }}
+    }
+  {% endfor %}
+
+  {{ scheme_classes | prepend: 'body' }} {
+    color: rgba(var(--color-foreground), 0.75);
+    background-color: rgb(var(--color-background));
+  }
+</style>
