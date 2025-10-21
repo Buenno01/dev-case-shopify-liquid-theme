@@ -1,0 +1,132 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+    "settings_schema": {
+        "colors": {
+            "name": "Colors",
+            "settings": {
+                "background": {
+                    "content": "Background"
+                },
+                "accent": {
+                    "content": "Accent"
+                },
+                "surface": {
+                    "content": "Surface"
+                },
+                "text-heading": {
+                    "content": "Text Heading"
+                },
+                "text-body": {
+                    "content": "Text Body"
+                },
+                "gradient": {
+                    "content": "Gradient"
+                },
+                "primary": {
+                    "label": "Primary"
+                },
+                "secondary": {
+                    "label": "Secondary"
+                },
+                "tertiary": {
+                    "label": "Tertiary"
+                },
+                "mute": {
+                    "label": "Mute"
+                },
+                "invert": {
+                    "label": "Invert"
+                }
+            }
+        },
+        "favicon": {
+            "name": "Favicon",
+            "settings": {
+                "assets": {
+                    "content": "Assets"
+                },
+                "favicon_item": {
+                    "label": "Favicon Item",
+                    "info": "The favicon item is the image that will be used as the favicon for the store."
+                }
+            }
+        },
+        "social_media": {
+            "name": "Social Media",
+            "settings": {
+                "header": {
+                    "content": "Social media links"
+                },
+                "social_instagram_link": {
+                    "label": "Instagram Link",
+                    "info": "The Instagram link is the link to the Instagram profile for the store."
+                },
+                "social_facebook_link": {
+                    "label": "Facebook Link",
+                    "info": "The Facebook link is the link to the Facebook profile for the store."
+                },
+                "social_twitter_link": {
+                    "label": "Twitter Link",
+                    "info": "The Twitter link is the link to the Twitter profile for the store."
+                },
+                "social_linkedin_link": {
+                    "label": "LinkedIn Link",
+                    "info": "The LinkedIn link is the link to the LinkedIn profile for the store."
+                }
+            }
+        },
+        "page_dimensions": {
+            "name": "Page Dimensions",
+            "settings": {
+                "page_dimensions_header": {
+                    "content": "Page Dimensions"
+                },
+                "page_width_desktop": {
+                    "label": "Page Width Desktop",
+                    "info": "The page width is the width of the page in desktop."
+                },
+                "page_width_mobile": {
+                    "label": "Page Width Mobile",
+                    "info": "The page width is the width of the page in mobile."
+                }
+            }
+        },
+        "typography": {
+            "name": "Typography",
+            "settings": {
+                "header": {
+                    "content": "Typography settings"
+                },
+                "heading_1": {
+                    "content": "Heading 1"
+                },
+                "heading_2": {
+                    "content": "Heading 2"
+                },
+                "body": {
+                    "content": "Body"
+                },
+                "body_large": {
+                    "content": "Body Large"
+                },
+                "show_settings": {
+                    "label": "Show Settings"
+                },
+                "size_desktop": {
+                    "label": "Size Desktop"
+                },
+                "size_mobile": {
+                    "label": "Size Mobile"
+                }
+            }
+        }
+    }
+}

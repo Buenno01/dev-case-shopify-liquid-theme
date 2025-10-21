@@ -1,0 +1,224 @@
+{
+  "current": {
+    "content_for_index": [],
+    "blocks": {},
+    "color_schemes": {
+      "scheme-1": {
+        "settings": {
+          "background-primary": "#FFFFFF",
+          "background-secondary": "#F3F4FE",
+          "background-tertiary": "#F5F5F7",
+          "background-invert": "#121212",
+          "accent-primary": "#282460",
+          "accent-secondary": "#908CC6",
+          "accent-mute": "#28246066",
+          "surface-primary": "#8C8DC633",
+          "text-heading-primary": "#121212",
+          "text-heading-secondary": "#1A1740",
+          "text-heading-invert": "#F3F4FE",
+          "text-body-primary": "#414141",
+          "text-body-secondary": "#1A174080",
+          "text-body-invert": "#F3F4FE",
+          "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+          "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+          "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+        }
+      },
+      "scheme-2": {
+        "settings": {
+          "background-primary": "#FFFFFF",
+          "background-secondary": "#F3F4FE",
+          "background-tertiary": "#F5F5F7",
+          "background-invert": "#121212",
+          "accent-primary": "#282460",
+          "accent-secondary": "#908CC6",
+          "accent-mute": "#28246066",
+          "surface-primary": "#8C8DC633",
+          "text-heading-primary": "#121212",
+          "text-heading-secondary": "#1A1740",
+          "text-heading-invert": "#F3F4FE",
+          "text-body-primary": "#414141",
+          "text-body-secondary": "#1A174080",
+          "text-body-invert": "#F3F4FE",
+          "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+          "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+          "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+        }
+      },
+      "scheme-3": {
+        "settings": {
+          "background-primary": "#FFFFFF",
+          "background-secondary": "#F3F4FE",
+          "background-tertiary": "#F5F5F7",
+          "background-invert": "#121212",
+          "accent-primary": "#282460",
+          "accent-secondary": "#908CC6",
+          "accent-mute": "#28246066",
+          "surface-primary": "#8C8DC633",
+          "text-heading-primary": "#121212",
+          "text-heading-secondary": "#1A1740",
+          "text-heading-invert": "#F3F4FE",
+          "text-body-primary": "#414141",
+          "text-body-secondary": "#1A174080",
+          "text-body-invert": "#F3F4FE",
+          "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+          "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+          "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+        }
+      },
+      "scheme-4": {
+        "settings": {
+          "background-primary": "#FFFFFF",
+          "background-secondary": "#F3F4FE",
+          "background-tertiary": "#F5F5F7",
+          "background-invert": "#121212",
+          "accent-primary": "#282460",
+          "accent-secondary": "#908CC6",
+          "accent-mute": "#28246066",
+          "surface-primary": "#8C8DC633",
+          "text-heading-primary": "#121212",
+          "text-heading-secondary": "#1A1740",
+          "text-heading-invert": "#F3F4FE",
+          "text-body-primary": "#414141",
+          "text-body-secondary": "#1A174080",
+          "text-body-invert": "#F3F4FE",
+          "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+          "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+          "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+        }
+      },
+      "scheme-5": {
+        "settings": {
+          "background-primary": "#FFFFFF",
+          "background-secondary": "#F3F4FE",
+          "background-tertiary": "#F5F5F7",
+          "background-invert": "#121212",
+          "accent-primary": "#282460",
+          "accent-secondary": "#908CC6",
+          "accent-mute": "#28246066",
+          "surface-primary": "#8C8DC633",
+          "text-heading-primary": "#121212",
+          "text-heading-secondary": "#1A1740",
+          "text-heading-invert": "#F3F4FE",
+          "text-body-primary": "#414141",
+          "text-body-secondary": "#1A174080",
+          "text-body-invert": "#F3F4FE",
+          "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+          "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+          "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+        }
+      }
+    }
+  },
+  "presets": {
+    "Default": {
+      "color_schemes": {
+        "scheme-1": {
+          "settings": {
+            "background-primary": "#FFFFFF",
+            "background-secondary": "#F3F4FE",
+            "background-tertiary": "#F5F5F7",
+            "background-invert": "#121212",
+            "accent-primary": "#282460",
+            "accent-secondary": "#908CC6",
+            "accent-mute": "#28246066",
+            "surface-primary": "#8C8DC633",
+            "text-heading-primary": "#121212",
+            "text-heading-secondary": "#1A1740",
+            "text-heading-invert": "#F3F4FE",
+            "text-body-primary": "#414141",
+            "text-body-secondary": "#1A174080",
+            "text-body-invert": "#F3F4FE",
+            "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+            "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+          }
+        },
+        "scheme-2": {
+          "settings": {
+            "background-primary": "#FFFFFF",
+            "background-secondary": "#F3F4FE",
+            "background-tertiary": "#F5F5F7",
+            "background-invert": "#121212",
+            "accent-primary": "#282460",
+            "accent-secondary": "#908CC6",
+            "accent-mute": "#28246066",
+            "surface-primary": "#8C8DC633",
+            "text-heading-primary": "#121212",
+            "text-heading-secondary": "#1A1740",
+            "text-heading-invert": "#F3F4FE",
+            "text-body-primary": "#414141",
+            "text-body-secondary": "#1A174080",
+            "text-body-invert": "#F3F4FE",
+            "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+            "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+          }
+        },
+        "scheme-3": {
+          "settings": {
+            "background-primary": "#FFFFFF",
+            "background-secondary": "#F3F4FE",
+            "background-tertiary": "#F5F5F7",
+            "background-invert": "#121212",
+            "accent-primary": "#282460",
+            "accent-secondary": "#908CC6",
+            "accent-mute": "#28246066",
+            "surface-primary": "#8C8DC633",
+            "text-heading-primary": "#121212",
+            "text-heading-secondary": "#1A1740",
+            "text-heading-invert": "#F3F4FE",
+            "text-body-primary": "#414141",
+            "text-body-secondary": "#1A174080",
+            "text-body-invert": "#F3F4FE",
+            "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+            "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+          }
+        },
+        "scheme-4": {
+          "settings": {
+            "background-primary": "#FFFFFF",
+            "background-secondary": "#F3F4FE",
+            "background-tertiary": "#F5F5F7",
+            "background-invert": "#121212",
+            "accent-primary": "#282460",
+            "accent-secondary": "#908CC6",
+            "accent-mute": "#28246066",
+            "surface-primary": "#8C8DC633",
+            "text-heading-primary": "#121212",
+            "text-heading-secondary": "#1A1740",
+            "text-heading-invert": "#F3F4FE",
+            "text-body-primary": "#414141",
+            "text-body-secondary": "#1A174080",
+            "text-body-invert": "#F3F4FE",
+            "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+            "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+          }
+        },
+        "scheme-5": {
+          "settings": {
+            "background-primary": "#FFFFFF",
+            "background-secondary": "#F3F4FE",
+            "background-tertiary": "#F5F5F7",
+            "background-invert": "#121212",
+            "accent-primary": "#282460",
+            "accent-secondary": "#908CC6",
+            "accent-mute": "#28246066",
+            "surface-primary": "#8C8DC633",
+            "text-heading-primary": "#121212",
+            "text-heading-secondary": "#1A1740",
+            "text-heading-invert": "#F3F4FE",
+            "text-body-primary": "#414141",
+            "text-body-secondary": "#1A174080",
+            "text-body-invert": "#F3F4FE",
+            "gradient-primary": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "gradient-secondary": "linear-gradient(199.9deg, #151024 -1.14%, #4F4667 86.71%)",
+            "gradient-mute": "linear-gradient(288.74deg, rgba(9, 8, 16, 0) 0.17%, rgba(255, 255, 255, 0.3) 29.43%, rgba(255, 255, 255, 0.3) 70.67%, rgba(9, 8, 16, 0) 99.92%)"
+          }
+        }
+      }
+    }
+  }
+}
