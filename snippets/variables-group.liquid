@@ -23,6 +23,7 @@
 
 <style>
     .group--{{id}} {
+        width: {{ width_mobile }};
         border-radius: {% render 'design.clamp', min: border_radius_mobile, max: border_radius %};
         {% if border == 'color' %}
             border-style: solid;
@@ -44,14 +45,21 @@
         {% endif %}
     }
 
+    @media screen and (min-width: 768px) {
+        .group--{{id}} {
+            width: {{ width }};
+        }
+    }
+
     {% if border == 'gradient' %}
     .group--{{id}} .group__inner {
+        width: 100%;
         {% render 'if-exists-css' key: 'background', value: background %}
     }
     {% endif %}
 
     .group--{{id}} .group__items {
-        width: {{ width_mobile }};
+        width: 100%;
         padding-inline: {{ padding_inline }};
         padding-block: {{ padding_block }};
         {% if gap != blank and gap_mobile != blank %}
@@ -65,7 +73,6 @@
 
     @media screen and (min-width: 768px) {
         .group--{{id}} .group__items {
-            width: {{ width }};
             {% render 'if-exists-css' key: 'flex-direction', value: direction %}
             {% render 'if-exists-css' key: 'align-items', value: alignment %}
             {% render 'if-exists-css' key: 'justify-content', value: justify %}
