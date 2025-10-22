@@ -225,7 +225,7 @@
         "default": 1060
       },
       {
-        "type": "range",
+        "type": "number",
         "id": "page_width_mobile",
         "label": "t:settings_schema.page_dimensions.settings.page_width_mobile.label",
         "info": "t:settings_schema.page_dimensions.settings.page_width_mobile.info",
