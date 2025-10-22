@@ -41,6 +41,9 @@
             {% endif %}
         {% endif %}
         {% if border != 'gradient' %}
+            {% if background != 'gradient' and background != 'none' %}
+                --current-background: {{ background }};
+            {% endif %}
             {% render 'if-exists-css' key: 'background', value: background %}
         {% endif %}
     }

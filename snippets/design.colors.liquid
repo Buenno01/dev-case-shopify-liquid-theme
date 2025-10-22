@@ -48,5 +48,9 @@
   {{- scheme_classes | prepend: ' body' }} {
     color: rgba(var(--rgba-text-body-primary));
     background-color: rgba(var(--rgba-background-primary));
+
+    &:not(.group) {
+      --current-background: rgba(var(--rgba-background-primary));
+    }
   }
 </style>
