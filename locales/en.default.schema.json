@@ -129,6 +129,24 @@
             }
         }
     },
+    "categories": {
+        "storytelling": "Storytelling"
+    },
+    "sections": {
+        "custom_section": {
+            "name": "Custom Section",
+            "settings": {
+                "color_scheme": {
+                    "label": "Color Scheme"
+                }
+            },
+            "presets": {
+                "default": "Custom Section",
+                "hero": "Hero",
+                "image_with_text": "Image with text"
+            }
+        }
+    },
     "blocks": {
         "button": {
             "name": "Button",
@@ -144,6 +162,9 @@
                         },
                         "secondary": {
                             "label": "Secondary"
+                        },
+                        "tertiary": {
+                            "label": "Tertiary"
                         }
                     }
                 },
@@ -192,6 +213,7 @@
                 },
                 "width": {
                     "label": "Width",
+                    "label_mobile": "Width (mobile)",
                     "options": {
                         "full": {
                             "label": "Full"

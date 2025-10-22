@@ -11,6 +11,7 @@
   assign font_family = block.settings.font_family | default: 'var(--titillium-web)'
 
   assign width = block.settings.width | default: 'fit-content'
+  assign width_mobile = block.settings.width_mobile | default: 'fit-content'
 %}
 
 {% render 'button',
@@ -22,7 +23,8 @@
   target: target,
   font_family: font_family,
   additional_attributes: block.shopify_attributes,
-  width: width
+  width: width,
+  width_mobile: width_mobile
 %}
 
 {% schema %}
@@ -37,7 +39,8 @@
         "default": "primary",
         "options": [
             { "value": "primary", "label": "t:blocks.button.settings.button_type.options.primary.label" },
-            { "value": "secondary", "label": "t:blocks.button.settings.button_type.options.secondary.label" }
+            { "value": "secondary", "label": "t:blocks.button.settings.button_type.options.secondary.label" },
+            { "value": "tertiary", "label": "t:blocks.button.settings.button_type.options.tertiary.label" }
         ]
     },
     {
@@ -125,6 +128,17 @@
       "type": "select",
       "id": "width",
       "label": "t:blocks.button.settings.width.label",
+      "default": "100%",
+      "options": [
+        { "value": "100%", "label": "t:blocks.button.settings.width.options.full.label" },
+        { "value": "auto", "label": "t:blocks.button.settings.width.options.auto.label" },
+        { "value": "fit-content", "label": "t:blocks.button.settings.width.options.fit-content.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "width_mobile",
+      "label": "t:blocks.button.settings.width_mobile.label",
       "default": "100%",
       "options": [
         { "value": "100%", "label": "t:blocks.button.settings.width.options.full.label" },

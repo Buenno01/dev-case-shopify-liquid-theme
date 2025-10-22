@@ -1,6 +1,7 @@
 .button {
 	--border-width: 2px;
-	--padding: 1.2rem;
+	--padding-block: 1.2rem;
+	--padding-inline: 2.4rem;
 	text-decoration: none;
 	font-size: 1.6rem;
 	font-family: var(--font-helvetica-neue);
@@ -11,20 +12,31 @@
 	justify-content: center;
 	cursor: pointer;
 	border-radius: 99px;
+	padding-inline: var(--padding-inline);
+	transition: filter 0.3s ease;
+
+	:is(svg) {
+		transition: transform 0.3s ease;
+	}
 
 	:is(*) {
 		line-height: 1;
 	}
 
 	&.button--primary {
-		padding: calc(var(--padding) + var(--border-width));
+		padding-block: calc(var(--padding-block) + var(--border-width));
 		background: var(--gradient-primary);
 		color: var(--color-text-heading-invert);
 		border: none;
+
+		&:hover {
+			filter: brightness(1.15);
+		}
 	}
 
 	&.button--secondary {
-		padding: calc(var(--padding));
+		padding-block: calc(var(--padding-block));
+		padding-inline: var(--padding-inline);
 		background: none;
 		border: none;
 		overflow: hidden;
@@ -39,6 +51,32 @@
 			background-clip: text;
 			-webkit-text-fill-color: transparent;
 			color: transparent;
+		}
+
+		&:hover {
+			filter: brightness(1.15);
+		}
+	}
+
+	&.button--tertiary {
+		padding: 0;
+		padding-block: calc(var(--padding-block) + var(--border-width));
+		padding-inline: var(--padding-inline);
+		border: none;
+		color: #fff;
+		background: var(--color-accent-primary);
+
+		:is(span) {
+			display: flex;
+			align-items: center;
+			gap: 0.8rem;
+		}
+
+		&:hover {
+			filter: brightness(1.15);
+			:is(svg) {
+				transform: translateX(0.2rem);
+			}
 		}
 	}
 }
