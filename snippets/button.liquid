@@ -40,7 +40,8 @@
   text_size_mobile: text_size_mobile,
   text_size_desktop: text_size_desktop,
   font_family: font_family,
-  width: width
+  width: width,
+  width_mobile: width_mobile
 %}
 
 <{{ html_tag }}
@@ -67,5 +68,8 @@
 >
   <span>
     {{ text }}
+    {% if button_type == 'tertiary' %}
+      {{ 'arrow-right.svg' | inline_asset_content }}
+    {% endif %}
   </span>
 </{{ html_tag }}>
