@@ -1,0 +1,15 @@
+b, strong {
+	font-weight: bolder;
+}
+em {
+	font-style: italic;
+}
+u, a {
+	text-decoration: underline;
+}
+s {
+	text-decoration: line-through;
+}
+a {
+	color: inherit;
+}
