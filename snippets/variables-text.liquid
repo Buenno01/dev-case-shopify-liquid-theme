@@ -14,13 +14,13 @@
             letter-spacing: calc({{calculated_font_size | replace: ';', ''}} * {{ letter_spacing | divided_by: 1000.0 }});
         {% endif %}
 
+        {% render 'if-exists-css' key: 'text-align', value: text_alignment_mobile %}
         {% render 'if-exists-css' key: 'line-height', value: line_height %}
         {% render 'if-exists-css' key: 'text-transform', value: text_transform %}
         {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
         {% render 'if-exists-css' key: 'font-style', value: text_style %}
         {% render 'if-exists-css' key: 'text-decoration', value: text_decoration %}
         {% render 'if-exists-css' key: 'color', value: text_color %}
-        {% render 'if-exists-css' key: 'text-align', value: text_alignment %}
         {% render 'if-exists-css' key: 'font-family', value: font_family %}
 
         {% if apply_gradient_to_bold_text == true -%}
@@ -33,5 +33,11 @@
                 font-weight: inherit;
             }
         {% endif %}
+    }
+
+    @media screen and (min-width: 768px) {
+        .text--{{ id }} {
+            {% render 'if-exists-css' key: 'text-align', value: text_alignment %}
+        }
     }
 </style>

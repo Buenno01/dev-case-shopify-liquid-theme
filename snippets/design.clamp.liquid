@@ -5,17 +5,24 @@
 {%- endcomment -%}
 
 {%- liquid
-    assign designed_screen = 1440
-    assign target_screen = designed_screen | divided_by: 100.0 | times: 0.75
-    assign clamp_ratio = 0.75 | divided_by: target_screen
+    assign designed_screen = 1440.0
+    assign designed_screen_mobile = 400.0
+
     if min <= max
+        assign target_screen = designed_screen | divided_by: 100.0 | times: 0.75
+        assign clamp_ratio = 0.75 | divided_by: target_screen
         assign min_value = min | divided_by: 10.0
         assign max_value = max | divided_by: 10.0
-        assign clamp_value = max_value | times: clamp_ratio | times: 10
-    else
-        assign min_value = 1.6
-        assign max_value = 1.6
-        assign clamp_value = 100
+        assign clamp_value = max_value | times: clamp_ratio | times: 10 | append: 'vw'
+    elsif min > max
+        assign min_value = max | divided_by: 10.0
+        assign max_value = min | divided_by: 10.0
+        
+        assign x = min | divided_by: 4.00
+
+        assign y = max_value | plus: max_value | append: 'rem - '
+
+        assign clamp_value = y | append: x | append: 'vw'
     endif
 -%}
-clamp({{ min_value }}rem, {{ clamp_value }}vw, {{ max_value }}rem);
+clamp({{ min_value }}rem, {{ clamp_value }}, {{ max_value }}rem);
