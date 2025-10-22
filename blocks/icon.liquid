@@ -1,31 +1,20 @@
-{{ 'icon.css' | asset_url | stylesheet_tag }}
 {% liquid
   assign icon_image = block.settings.icon_image
   assign icon_width = block.settings.icon_width
   assign icon_width_mobile = block.settings.icon_width_mobile
   assign icon_link = block.settings.icon_link
   assign icon_alt = block.settings.icon_alt
+  assign id = block.id | default: section.id
 %}
 
-<style>
-  .icon-block.icon-block--{{ block.id }} {
-    width: {% render 'design.clamp', min: icon_width_mobile, max: icon_width %};
-  }
-</style>
-
-{% capture image_content %}
-  <img src="{{ icon_image | image_url: width: icon_width }}" alt="{{ icon_alt }}" width="{{ icon_width }}" height="{{ icon_width }}">
-{% endcapture %}
-
-<div {{ block.shopify_attributes }} class='icon-block icon-block--{{ block.id }}'>
-  {% if icon_link %}
-    <a href='{{ icon_link }}'>
-      {{ image_content }}
-    </a>
-  {% else %}
-    {{ image_content }}
-  {% endif %}
-</div>
+{% render 'icon',
+    icon_image: icon_image,
+    id: id,
+    icon_width: icon_width,
+    icon_width_mobile: icon_width_mobile,
+    icon_link: icon_link,
+    icon_alt: icon_alt
+%}
 
 {% schema %}
 {

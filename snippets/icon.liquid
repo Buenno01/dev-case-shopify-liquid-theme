@@ -1,0 +1,21 @@
+{{ 'icon.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .icon-block.icon-block--{{ id }} {
+    width: {% render 'design.clamp', min: icon_width_mobile, max: icon_width %};
+  }
+</style>
+
+{% capture image_content %}
+  <img src="{{ icon_image | image_url: width: icon_width }}" alt="{{ icon_alt }}" width="{{ icon_width }}" height="{{ icon_width }}">
+{% endcapture %}
+
+<div {{ block.shopify_attributes }} class='icon-block icon-block--{{ id }}'>
+  {% if icon_link %}
+    <a href='{{ icon_link }}'>
+      {{ image_content }}
+    </a>
+  {% else %}
+    {{ image_content }}
+  {% endif %}
+</div>
