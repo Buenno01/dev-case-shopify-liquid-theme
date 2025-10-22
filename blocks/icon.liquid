@@ -1,0 +1,75 @@
+{{ 'icon.css' | asset_url | stylesheet_tag }}
+{% liquid
+  assign icon_image = block.settings.icon_image
+  assign icon_width = block.settings.icon_width
+  assign icon_width_mobile = block.settings.icon_width_mobile
+  assign icon_link = block.settings.icon_link
+  assign icon_alt = block.settings.icon_alt
+%}
+
+<style>
+  .icon-block.icon-block--{{ block.id }} {
+    width: {% render 'design.clamp', min: icon_width_mobile, max: icon_width %};
+  }
+</style>
+
+{% capture image_content %}
+  <img src="{{ icon_image | image_url: width: icon_width }}" alt="{{ icon_alt }}" width="{{ icon_width }}" height="{{ icon_width }}">
+{% endcapture %}
+
+<div {{ block.shopify_attributes }} class='icon-block icon-block--{{ block.id }}'>
+  {% if icon_link %}
+    <a href='{{ icon_link }}'>
+      {{ image_content }}
+    </a>
+  {% else %}
+    {{ image_content }}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "t:blocks.icon.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "icon_image",
+      "label": "t:blocks.icon.settings.icon-image.label"
+    },
+    {
+      "type": "range",
+      "id": "icon_width",
+      "label": "t:blocks.icon.settings.icon-width.label",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "range",
+      "id": "icon_width_mobile",
+      "label": "t:blocks.icon.settings.icon-width-mobile.label",
+      "min": 10,
+      "max": 100,
+      "step": 2,
+      "default": 24
+    },
+    {
+      "type": "url",
+      "id": "icon_link",
+      "label": "t:blocks.icon.settings.icon-link.label"
+    },
+    {
+      "type": "text",
+      "id": "icon_alt",
+      "label": "t:blocks.icon.settings.icon-alt.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.icon.name"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+.icon-block {
+        display: block;
+        height: auto;
+  
+    :is(img) {
+        display: block;
+        height: auto;
+        width: 100%;
+    }
+  
+    :is(a) {
+        display: block;
+        height: auto;
+        width: 100%;
+        text-decoration: none;
+        transition: filter 0.3s ease;
+    
+        &:hover {
+            filter: brightness(1.1);
+        }
+    }
+}

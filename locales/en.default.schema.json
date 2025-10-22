@@ -130,6 +130,26 @@
         }
     },
     "blocks": {
+        "icon": {
+            "name": "Icon",
+            "settings": {
+                "icon-image": {
+                    "label": "Icon image"
+                },
+                "icon-width": {
+                    "label": "Icon width"
+                },
+                "icon-width-mobile": {
+                    "label": "Icon width (Mobile)"
+                },
+                "icon-link": {
+                    "label": "Icon link"
+                },
+                "icon-alt": {
+                    "label": "Icon alt"
+                }
+            }
+        },
         "text": {
             "name": "Inline text",
             "settings": {
