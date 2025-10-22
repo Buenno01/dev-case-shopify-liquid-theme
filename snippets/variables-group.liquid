@@ -34,10 +34,10 @@
             border: {{ border_width }} solid transparent;
             background-origin: border-box;
             background-clip: padding-box, border-box;
-            {% if background != blank and background != 'none' %}
+            {% if background != blank and background == 'color' %}
                 background-image: linear-gradient({{ background }}, {{ background }}), {{ border_gradient }};
             {% else %}
-                background-image: linear-gradient(var(--color-background), var(--color-background)), {{ border_gradient }};
+                background-image: linear-gradient(var(--color-background-primary), var(--color-background-primary)), {{ border_gradient }};
             {% endif %}
         {% endif %}
         {% if border != 'gradient' %}
@@ -53,7 +53,6 @@
 
     {% if border == 'gradient' %}
     .group--{{id}} .group__inner--{{id}} {
-        width: 100%;
         {% render 'if-exists-css' key: 'background', value: background %}
     }
     {% endif %}
