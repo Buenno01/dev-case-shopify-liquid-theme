@@ -1,0 +1,21 @@
+.badge {
+    padding: 0.8rem 1.6rem;
+    border-radius: 99px;
+    background: var(--color-background-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid transparent;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    background-image: linear-gradient(var(--color-background-tertiary), var(--color-background-tertiary)), var(--gradient-mute);
+
+    .badge__inner {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        line-height: 110%;
+    }
+}

@@ -1,0 +1,42 @@
+{% comment %}
+  Accepts:
+    - base_url: string
+    - start_width: number
+    - step: number
+    - iterations: number
+  Usage:
+    <img
+      src="https://my-store.com/my-image.png"
+      srcset="
+        {% render 'sourceset',
+          base_url: 'https://my-store.com/my-image.png',
+          start_width: 320,
+          step: 100,
+          iterations: 10
+        %}
+      "
+      width="WWW"
+      height="HHH"
+      alt="my-alt"
+    >
+{% endcomment %}
+
+{%- liquid
+  assign formatted_url = base_url
+
+  if formatted_url contains '?'
+    assign formatted_url = formatted_url | append: '&'
+  else
+    assign formatted_url = formatted_url | append: '?'
+  endif
+-%}
+
+{%- for index in (0..iterations) -%}
+  {% assign w_variation = index | times: step | plus: start_width %}
+  {{- formatted_url -}}
+  width={{ w_variation }}
+  {{ w_variation }}w
+  {%- unless forloop.last -%}
+    ,
+  {%- endunless -%}
+{%- endfor -%}

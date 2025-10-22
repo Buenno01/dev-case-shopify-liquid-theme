@@ -405,6 +405,23 @@
                 }
             }
         },
+        "badge": {
+            "name": "Badge",
+            "settings": {
+                "text": {
+                    "label": "Text"
+                },
+                "main_icon": {
+                    "label": "Main Icon"
+                },
+                "left_icon": {
+                    "label": "Left Icon"
+                },
+                "right_icon": {
+                    "label": "Right Icon"
+                }
+            }
+        },
         "group": {
             "name": "Group",
             "settings": {
@@ -452,6 +469,9 @@
                         },
                         "end": {
                             "label": "End"
+                        },
+                        "stretch": {
+                            "label": "Stretch"
                         }
                     }
                 },
@@ -615,6 +635,76 @@
                 "padding_block_differs": {
                     "label": "Vertical padding is different on each side",
                     "label_mobile": "Vertical padding is different on each side (mobile)"
+                },
+                "width": {
+                    "label": "Width",
+                    "label_mobile": "Width (mobile)",
+                    "options": {
+                        "full": {
+                            "label": "Full"
+                        },
+                        "fit": {
+                            "label": "Fit"
+                        },
+                        "container": {
+                            "label": "Container"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "custom_width": {
+                    "label": "Custom width",
+                    "label_mobile": "Custom width (mobile)"
+                }
+            }
+        },
+        "image": {
+            "name": "Image",
+            "settings": {
+                "header": {
+                    "images": "Images",
+                    "layout": "Image layout settings",
+                    "image_leak_mobile": "Image leak settings (Mobile)",
+                    "image_leak_desktop": "Image leak settings (Desktop)",
+                    "image_leak_vertical_mobile": "Vertical image leak settings (Mobile)",
+                    "image_leak_vertical_desktop": "Vertical image leak settings (Desktop)",
+                    "image_leak_horizontal_mobile": "Horizontal image leak settings (Mobile)",
+                    "image_leak_horizontal_desktop": "Horizontal image leak settings (Desktop)"
+                },
+                "image": {
+                    "label": "Image"
+                },
+                "image_mobile": {
+                    "label": "Image (Mobile)"
+                },
+                "image_object_fit": {
+                    "label": "Image object fit",
+                    "options": {
+                    "cover": "Cover",
+                    "contain": "Contain",
+                    "fill": "Fill",
+                    "leak": "Leak"
+                    }
+                },
+                "place_behind_content_desktop": {
+                    "label": "Place behind content (Desktop)"
+                },
+                "place_behind_content_mobile": {
+                    "label": "Place behind content (Mobile)"
+                },
+                "image_leak_left": {
+                    "label": "Left"
+                },
+                "image_leak_right": {
+                    "label": "Right"
+                },
+                "image_leak_top": {
+                    "label": "Top"
+                },
+                "image_leak_bottom": {
+                    "label": "Bottom"
                 },
                 "width": {
                     "label": "Width",

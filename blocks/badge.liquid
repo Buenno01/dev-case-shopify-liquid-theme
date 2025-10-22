@@ -1,0 +1,107 @@
+{% liquid
+    assign id = block.id | default: section.id
+    assign text = block.settings.text | default: blank
+    assign main_icon_image = block.settings.main_icon | default: blank
+    assign left_icon_image = block.settings.left_icon | default: blank
+    assign right_icon_image = block.settings.right_icon | default: blank
+%}
+
+{% assign left_icon_id = id | append: '-left-icon' %}
+{% capture left_icon %}
+    {% render 'icon',
+        icon_image: left_icon_image,
+        id: left_icon_id
+        icon_width: 8,
+        icon_width_mobile: 8,
+        icon_link: "",
+        icon_alt: ""
+    %}
+{% endcapture %}
+
+{% assign right_icon_id = id | append: '-right-icon' %}
+{% capture right_icon %}
+    {% render 'icon',
+        icon_image: right_icon_image,
+        id: right_icon_id
+        icon_width: 8,
+        icon_width_mobile: 8,
+        icon_link: "",
+        icon_alt: ""
+    %}
+{% endcapture %}
+
+{% assign main_icon_id = id | append: '-main-icon' %}
+{% capture main_content %}
+    {% render 'icon',
+        icon_image: main_icon_image,
+        id: main_icon_id
+        icon_width: 16,
+        icon_width_mobile: 16,
+        icon_link: "",
+        icon_alt: ""
+    %}
+    {% render 'text',
+        text: text
+        text_alignment: "left",
+        text_alignment_mobile: "left",
+        font_family: "var(--font-product-sans)",
+        tag: "p",
+        text_size: "var(--font-size-body)",
+        force_font_weight: false,
+        text_style: "normal",
+        text_decoration: "none",
+        text_transform: "none",
+        line_height: '150%',
+        letter_spacing: 0,
+        inherit_text_color: false,
+        text_color: "#121212",
+        apply_gradient_to_bold_text: false,
+        gradient_color: "var(--gradient-primary)"
+    %}
+{% endcapture %}
+
+{{ 'badge.css' | asset_url | stylesheet_tag }}
+
+<div {{block.shopify_attributes}} class="badge badge--{{ id }}">
+    {{ left_icon }}
+    <div class="badge__inner">
+        {{ main_content }}
+    </div>
+    {{ right_icon }}
+</div>
+
+
+{% schema %}
+{
+    "name": "t:blocks.badge.name",
+    "tag": null,
+    "settings": [
+        {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "t:blocks.badge.settings.text.label",
+            "default": "<strong>Clinician’s Choice</strong>"
+        },
+        {
+            "type": "image_picker",
+            "id": "main_icon",
+            "label": "t:blocks.badge.settings.main_icon.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "left_icon",
+            "label": "t:blocks.badge.settings.left_icon.label"
+        },
+        {
+            "type": "image_picker",
+            "id": "right_icon",
+            "label": "t:blocks.badge.settings.right_icon.label"
+        }
+    ],
+    "presets": [
+        {
+            "name": "t:blocks.badge.name"
+        }
+    ]
+}
+{% endschema %}

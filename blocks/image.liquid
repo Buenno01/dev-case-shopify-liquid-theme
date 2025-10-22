@@ -1,0 +1,264 @@
+{% liquid
+  assign image = block.settings.image
+  assign image_mobile = block.settings.image_mobile
+  assign mobile_breakpoint = 768
+  assign width = image.width | default: 1000
+%}
+{% render 'variables-image', s_settings: block.settings, id: block.id %}
+{% if image %}
+  <div {{ block.shopify_attributes }} class='image-block image-block--{{ block.id }}'>
+    <picture>
+      {% if image_mobile %}
+        <source
+          {% assign src_url = image_mobile.src | image_url %}
+          srcset='
+            {%- render 'sourceset',
+              base_url: src_url,
+              start_width: 320,
+              step: 100,
+              iterations: 5
+            -%}
+          '
+          media='(max-width: {{ mobile_breakpoint | minus: 1 }}px)'
+          width='{{ image_mobile.width }}'
+          height='{{ image_mobile.height }}'
+        >
+        <source
+          srcset='
+            {% assign src_url = image.src | image_url %}
+            {%- render 'sourceset',
+              base_url: src_url,
+              start_width: 720,
+              step: 100,
+              iterations: 16
+            -%}
+          '
+          media='(min-width: {{ mobile_breakpoint }}px)'
+          width='{{ image.width }}'
+          height='{{ image.height }}'
+        >
+      {% else %}
+        <source
+          {% assign src_url = image.src | image_url %}
+          srcset='
+            {%- render 'sourceset',
+              base_url: src_url,
+              start_width: 320,
+              step: 100,
+              iterations: 16
+            -%}
+          '
+          width='{{ image.width }}'
+          height='{{ image.height }}'
+        >
+      {% endif %}
+      <img
+        src='{{ image.src | image_url: width: width }}'
+        alt='{{ image.alt }}'
+        width='auto'
+        height='auto'
+      >
+    </picture>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:blocks.image.name",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.images"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:blocks.image.settings.image.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "t:blocks.image.settings.image_mobile.label"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.layout"
+    },
+    {
+      "type": "select",
+      "id": "image_object_fit",
+      "label": "t:blocks.image.settings.image_object_fit.label",
+      "default": "cover",
+      "options": [
+        { "value": "cover", "label": "t:blocks.image.settings.image_object_fit.options.cover" },
+        { "value": "contain", "label": "t:blocks.image.settings.image_object_fit.options.contain" },
+        { "value": "fill", "label": "t:blocks.image.settings.image_object_fit.options.fill" },
+        { "value": "leak", "label": "t:blocks.image.settings.image_object_fit.options.leak" }
+      ]
+    },
+    {
+      "type": "checkbox",
+      "id": "place_behind_content_desktop",
+      "label": "t:blocks.image.settings.place_behind_content_desktop.label",
+      "default": true,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "checkbox",
+      "id": "place_behind_content_mobile",
+      "label": "t:blocks.image.settings.place_behind_content_mobile.label",
+      "default": true,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "select",
+      "id": "width",
+      "label": "t:blocks.image.settings.width.label",
+      "options": [
+        { "value": "100%", "label": "t:blocks.image.settings.width.options.full.label" },
+        { "value": "fit-content", "label": "t:blocks.image.settings.width.options.fit-content.label" },
+        { "value": "auto", "label": "t:blocks.image.settings.width.options.auto.label" },
+        { "value": "custom", "label": "t:blocks.image.settings.width.options.custom.label" }
+      ],
+      "default": "100%"
+    },
+    {
+      "type": "range",
+      "id": "width_custom",
+      "label": "t:blocks.group.settings.width_custom.label",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "%",
+      "visible_if": "{{ block.settings.width == 'custom' }}"
+    },
+    {
+      "type": "range",
+      "id": "width_custom_mobile",
+      "label": "t:general.width.range.label_mobile",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 100,
+      "unit": "%",
+      "visible_if": "{{ block.settings.width == 'custom' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.image_leak_vertical_mobile",
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_top_mobile",
+      "label": "t:blocks.image.settings.image_leak_top.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_bottom_mobile",
+      "label": "t:blocks.image.settings.image_leak_bottom.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.image_leak_vertical_desktop",
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_top_desktop",
+      "label": "t:blocks.image.settings.image_leak_top.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_bottom_desktop",
+      "label": "t:blocks.image.settings.image_leak_bottom.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.image_leak_horizontal_mobile",
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_left_mobile",
+      "label": "t:blocks.image.settings.image_leak_left.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_right_mobile",
+      "label": "t:blocks.image.settings.image_leak_right.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "header",
+      "content": "t:blocks.image.settings.header.image_leak_horizontal_desktop",
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_left_desktop",
+      "label": "t:blocks.image.settings.image_leak_left.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+    {
+      "type": "range",
+      "id": "image_leak_right_desktop",
+      "label": "t:blocks.image.settings.image_leak_right.label",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 0,
+      "visible_if": "{{ block.settings.image_object_fit == 'leak' }}"
+    },
+
+  ],
+  "presets": [
+    {
+      "name": "t:blocks.image.name"
+    }
+  ]
+}
+{% endschema %}

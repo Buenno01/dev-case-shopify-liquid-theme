@@ -1,0 +1,232 @@
+{% comment %}
+  Accepts:
+    - s_settings: A block or section settings object.
+    - id: A block or section id
+{% endcomment %}
+
+{% liquid
+  assign mobile_breakpoint = 768
+  assign id = id | default: id | default: section.id
+  assign blck = s_settings | default: block.settings | default: section.settings
+
+  assign place_behind_content_desktop = blck.place_behind_content_desktop | default: true
+  assign place_behind_content_mobile = blck.place_behind_content_mobile | default: true
+
+  assign image = blck.image
+  assign image_mobile = blck.image_mobile | default: image
+
+  # Image layout settings
+  assign image_fixed_ratio = blck.image_fixed_ratio
+  assign image_fixed_ratio_value = blck.image_fixed_ratio_value
+  assign image_object_fit = blck.image_object_fit | default: 'cover'
+
+  # Image leak settings
+  assign image_leak_left_mobile = blck.image_leak_left_mobile | default: 0
+  assign image_leak_right_mobile = blck.image_leak_right_mobile | default: 0
+  assign image_leak_top_mobile = blck.image_leak_top_mobile | default: 0
+  assign image_leak_bottom_mobile = blck.image_leak_bottom_mobile | default: 0
+
+  assign css_left_mobile = blank
+  assign css_right_mobile = blank
+  assign css_top_mobile = blank
+  assign css_bottom_mobile = blank
+  assign css_transform_x_mobile = 'translateX(0%)'
+  assign css_transform_y_mobile = 'translateY(0%)'
+
+  if image_object_fit == 'leak'
+    if image_leak_right_mobile > 0 and image_leak_left_mobile == 0
+      assign css_left_mobile = 0
+      assign css_right_mobile = 'unset'
+    elsif image_leak_left_mobile > 0 and image_leak_right_mobile == 0
+      assign css_right_mobile = 0
+      assign css_left_mobile = 'unset'
+    else
+      assign css_left_mobile = 50 | minus: image_leak_left_mobile | plus: image_leak_right_mobile | append: '%'
+      assign css_transform_x_mobile = 'translateX(-50%)'
+      assign css_right_mobile = 'unset'
+    endif
+    if image_leak_top_mobile > 0 and image_leak_bottom_mobile == 0
+      assign css_top_mobile = 'unset'
+      assign css_bottom_mobile = 0
+    elsif image_leak_bottom_mobile > 0 and image_leak_top_mobile == 0
+      assign css_bottom_mobile = 'unset'
+      assign css_top_mobile = 0
+    else
+      assign css_top_mobile = 50 | plus: image_leak_top_mobile | minus: image_leak_bottom_mobile | append: '%'
+      assign css_transform_y_mobile = 'translateY(-50%)'
+      assign css_bottom_mobile = 'unset'
+    endif
+  endif
+
+  assign image_leak_left_desktop = blck.image_leak_left_desktop | default: 0
+  assign image_leak_right_desktop = blck.image_leak_right_desktop | default: 0
+  assign image_leak_top_desktop = blck.image_leak_top_desktop | default: 0
+  assign image_leak_bottom_desktop = blck.image_leak_bottom_desktop | default: 0
+
+  assign css_left_desktop = blank
+  assign css_right_desktop = blank
+  assign css_top_desktop = blank
+  assign css_bottom_desktop = blank
+  assign css_transform_x_desktop = 'translateX(0%)'
+  assign css_transform_y_desktop = 'translateY(0%)'
+
+  if image_object_fit == 'leak'
+    if image_leak_right_desktop > 0 and image_leak_left_desktop == 0
+      assign css_left_desktop = 0
+      assign css_right_desktop = 'unset'
+    elsif image_leak_left_desktop > 0 and image_leak_right_desktop == 0
+      assign css_right_desktop = 0
+      assign css_left_desktop = 'unset'
+    else
+      assign css_left_desktop = 50 | minus: image_leak_left_desktop | plus: image_leak_right_desktop | append: '%'
+      assign css_transform_x_desktop = 'translateX(-50%)'
+      assign css_right_desktop = 'unset'
+    endif
+    if image_leak_top_desktop > 0 and image_leak_bottom_desktop == 0
+      assign css_top_desktop = 'unset'
+      assign css_bottom_desktop = 0
+    elsif image_leak_bottom_desktop > 0 and image_leak_top_desktop == 0
+      assign css_bottom_desktop = 'unset'
+      assign css_top_desktop = 0
+    else
+      assign css_top_desktop = 50 | plus: image_leak_top_desktop | minus: image_leak_bottom_desktop | append: '%'
+      assign css_transform_y_desktop = 'translateY(-50%)'
+      assign css_bottom_desktop = 'unset'
+    endif
+  endif
+
+  # Width settings
+  assign width = blck.width | default: '100%'
+  assign width_custom = blck.width_custom
+  assign width_custom_mobile = blck.width_custom_mobile
+%}
+
+{%  liquid
+  if image_object_fit == 'leak'
+    assign container_calculated_width_desktop = image.width | plus: 0.0
+    assign container_calculated_height_desktop = image.height | plus: 0.0
+
+    assign image_calculated_width_desktop = image.width | plus: 0.0
+    assign image_calculated_height_desktop = image.height | plus: 0.0
+
+    assign image_leak_horizontal_desktop = image_leak_left_desktop | plus: image_leak_right_desktop | divided_by: 100.0 | times: image.width
+    assign image_leak_vertical_desktop = image_leak_top_desktop | plus: image_leak_bottom_desktop | divided_by: 100.0 | times: image.height
+
+    if image_leak_horizontal_desktop > 0
+      assign image_leak_horizontal_desktop = image_leak_left_desktop | plus: image_leak_right_desktop
+      assign container_calculated_width_desktop = image_calculated_width_desktop | minus: image_leak_horizontal_desktop
+    endif
+
+    if image_leak_vertical_desktop > 0
+      assign image_leak_vertical_desktop = image_leak_top_desktop | plus: image_leak_bottom_desktop
+      assign container_calculated_height_desktop = image_calculated_height_desktop | minus: image_leak_vertical_desktop
+    endif
+
+    assign container_calculated_width_mobile = image_mobile.width | plus: 0.0
+    assign container_calculated_height_mobile = image_mobile.height | plus: 0.0
+
+    assign image_calculated_width_mobile = image_mobile.width | plus: 0.0
+    assign image_calculated_height_mobile = image_mobile.height | plus: 0.0
+
+    assign image_leak_horizontal_mobile = image_leak_left_mobile | plus: image_leak_right_mobile | divided_by: 100.0 | times: image_mobile.width
+    assign image_leak_vertical_mobile = image_leak_top_mobile | plus: image_leak_bottom_mobile | divided_by: 100.0 | times: image_mobile.height
+
+    if image_leak_horizontal_mobile > 0
+      assign image_leak_horizontal_mobile = image_leak_left_mobile | plus: image_leak_right_mobile
+      assign container_calculated_width_mobile = image_calculated_width_mobile | minus: image_leak_horizontal_mobile
+    endif
+    if image_leak_vertical_mobile > 0
+      assign image_leak_vertical_mobile = image_leak_top_mobile | plus: image_leak_bottom_mobile
+      assign container_calculated_height_mobile = image_calculated_height_mobile | minus: image_leak_vertical_mobile
+    endif
+  endif
+%}
+
+<style>
+  .image-block.image-block--{{ id }} {
+    display: block;
+    position: relative;
+    pointer-events: none;
+
+    {% if image_fixed_ratio %}
+      aspect-ratio: {{ image_fixed_ratio_value }};
+    {% endif %}
+
+    {% if width != 'custom' %}
+      width: {{ width }};
+    {% else %}
+      width: {{ width_custom_mobile }}%;
+    {% endif %}
+  }
+
+  {% if width == 'custom' %}
+    @media screen and (min-width: {{ mobile_breakpoint }}px) {
+      .image-block.image-block--{{ id }} {
+        width: {{ width_custom }}%;
+      }
+    }
+  {% endif %}
+
+  .image-block.image-block--{{ id }} picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-block.image-block--{{ id }} img {
+    width: 100%;
+    height: 100%;
+    {% if image_object_fit == 'leak' %}
+      object-fit: contain;
+    {% else %}
+      object-fit: {{ image_object_fit }};
+    {% endif %}
+    display: block;
+  }
+
+  {% if image_object_fit == 'leak' %}
+    .image-block.image-block--{{ id }} picture {
+      position: relative;
+      aspect-ratio: {{ container_calculated_width_mobile }} / {{ container_calculated_height_mobile }};
+      {% if place_behind_content_mobile %}
+        z-index: -1;
+      {% endif %}
+    }
+
+    @media screen and (min-width: {{ mobile_breakpoint }}px) {
+      .image-block.image-block--{{ id }} picture {
+        aspect-ratio: {{ container_calculated_width_desktop }} / {{ container_calculated_height_desktop }};
+        {% if place_behind_content_desktop %}
+          z-index: -1;
+        {% endif %}
+      }
+    }
+
+    .image-block.image-block--{{ id }} img {
+      position: absolute;
+      {% render 'if-exists-css' key: 'left', value: css_left_mobile %}
+      {% render 'if-exists-css' key: 'right', value: css_right_mobile %}
+      {% render 'if-exists-css' key: 'top', value: css_top_mobile %}
+      {% render 'if-exists-css' key: 'bottom', value: css_bottom_mobile %}
+
+      transform: {{ css_transform_x_mobile }} {{ css_transform_y_mobile }};
+      width: {{ image_calculated_width_mobile | divided_by: container_calculated_width_mobile | times: 100.00 }}%;
+      height: {{ image_calculated_height_mobile | divided_by: container_calculated_height_mobile | times: 100.00 }}%;
+      aspect-ratio: {{ image_calculated_width_mobile }} / {{ image_calculated_height_mobile }};
+    }
+
+    @media screen and (min-width: {{ mobile_breakpoint }}px) {
+      .image-block.image-block--{{ id }} img {
+        {% render 'if-exists-css' key: 'left', value: css_left_desktop %}
+        {% render 'if-exists-css' key: 'right', value: css_right_desktop %}
+        {% render 'if-exists-css' key: 'top', value: css_top_desktop %}
+        {% render 'if-exists-css' key: 'bottom', value: css_bottom_desktop %}
+
+        transform: {{ css_transform_x_desktop }} {{ css_transform_y_desktop }};
+        width: {{ image_calculated_width_desktop | divided_by: container_calculated_width_desktop | times: 100.00 }}%;
+        height: {{ image_calculated_height_desktop | divided_by: container_calculated_height_desktop | times: 100.00 }}%;
+        aspect-ratio: {{ image_calculated_width_desktop }} / {{ image_calculated_height_desktop }};
+      }
+    }
+  {% endif %}
+</style>
