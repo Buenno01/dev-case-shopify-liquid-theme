@@ -39,10 +39,14 @@
       --gradient-secondary: {{ scheme.settings.gradient-secondary }};
       --gradient-mute: {{ scheme.settings.gradient-mute }};
     {%- endcapture -%}
+
+    .color-{{ scheme.id }} {
+      {{ scheme_variables }}
+    }
   {%- endfor -%}
 
   {{- scheme_classes | prepend: ' body' }} {
-    color: var(--color-text-body-primary);
-    background-color: var(--color-background-primary);
+    color: rgba(var(--rgba-text-body-primary));
+    background-color: rgba(var(--rgba-background-primary));
   }
 </style>
