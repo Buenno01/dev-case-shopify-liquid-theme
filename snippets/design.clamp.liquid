@@ -11,7 +11,7 @@
     if min <= max
         assign min_value = min | divided_by: 10.0
         assign max_value = max | divided_by: 10.0
-        assign clamp_value = max_value | times: clamp_ratio
+        assign clamp_value = max_value | times: clamp_ratio | times: 10
     else
         assign min_value = 1.6
         assign max_value = 1.6
