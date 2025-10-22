@@ -1,18 +1,37 @@
+{% capture calculated_font_size %}
+    {% if text_size == 'custom' -%}
+        {%  render 'design.clamp', min: font_size_mobile, max: font_size_desktop %}
+    {%- else -%}
+        {{ text_size }};
+    {%- endif %}
+{% endcapture %}
+
 <style>
     .text--{{ id }} {
-        {% if text_size == 'custom' -%}
-            font-size: {%  render 'design.clamp', min: font_size_mobile, max: font_size_desktop %}
-        {%- else -%}
-            font-size: {{ text_size }};
-        {%- endif %}
+        font-size: {{ calculated_font_size }}
+
+        {% if letter_spacing != blank -%}
+            letter-spacing: calc({{calculated_font_size | replace: ';', ''}} * {{ letter_spacing | divided_by: 1000.0 }});
+        {% endif %}
+
+        {% render 'if-exists-css' key: 'line-height', value: line_height %}
         {% render 'if-exists-css' key: 'text-transform', value: text_transform %}
-        {% render 'if-exists-css' key: 'letter-spacing', value: letter_spacing %}
         {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
         {% render 'if-exists-css' key: 'font-style', value: text_style %}
         {% render 'if-exists-css' key: 'text-decoration', value: text_decoration %}
         {% render 'if-exists-css' key: 'color', value: text_color %}
         {% render 'if-exists-css' key: 'text-align', value: text_alignment %}
-        {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
         {% render 'if-exists-css' key: 'font-family', value: font_family %}
+
+        {% if apply_gradient_to_bold_text == true -%}
+            :is(b, strong) {
+                background: {{ gradient_color }};
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+                color: transparent;
+                font-weight: inherit;
+            }
+        {% endif %}
     }
 </style>

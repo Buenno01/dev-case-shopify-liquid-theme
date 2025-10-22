@@ -1,0 +1,343 @@
+{% liquid
+    assign blck = block.settings
+    assign id = block.id
+    assign text = blck.text
+    assign additional_attributes = block.shopify_attributes
+    assign tag = blck.tag
+    assign text_size = blck.text_size
+    assign inherit_text_color = blck.inherit_text_color
+    if inherit_text_color
+        assign text_color = blank
+    else
+        assign text_color = blck.text_color
+    endif
+    assign text_alignment = blck.text_alignment
+    assign text_style = blck.text_style
+    assign text_decoration = blck.text_decoration
+    assign text_transform = blck.text_transform
+    assign line_height = blck.line_height | append: '%'
+    assign letter_spacing = blck.letter_spacing
+    assign font_family = blck.font_family
+    assign font_weight = blck.font_weight
+    assign force_font_weight = blck.force_font_weight
+    assign font_size_mobile = blck.font_size_mobile
+    assign font_size_desktop = blck.font_size_desktop
+    assign apply_gradient_to_bold_text = blck.apply_gradient_to_bold_text
+    assign gradient_color = blck.gradient_color
+%}
+
+{% render 'text',
+    id: id,
+    text: text,
+    additional_attributes: additional_attributes,
+    tag: tag,
+    text_size: text_size,
+    text_color: text_color,
+    text_alignment: text_alignment,
+    text_style: text_style,
+    text_decoration: text_decoration,
+    text_transform: text_transform,
+    line_height: line_height,
+    letter_spacing: letter_spacing,
+    font_family: font_family,
+    font_weight: font_weight,
+    force_font_weight: force_font_weight,
+    font_size_mobile: font_size_mobile,
+    font_size_desktop: font_size_desktop,
+    apply_gradient_to_bold_text: apply_gradient_to_bold_text,
+    gradient_color: gradient_color
+%}
+{% schema %}
+{
+    "name": "t:blocks.text.name",
+    "settings": [
+        {
+            "type": "header",
+            "content": "t:blocks.text.settings.header.text"
+        },
+        {
+            "type": "inline_richtext",
+            "id": "text",
+            "label": "t:blocks.text.settings.text.label"
+        },
+        {
+            "type": "select",
+            "id": "text_alignment",
+            "label": "t:blocks.text.settings.text_alignment.label",
+            "default": "left",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_alignment.options.left.label",
+                    "value": "left"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_alignment.options.center.label",
+                    "value": "center"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_alignment.options.right.label",
+                    "value": "right"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "font_family",
+            "label": "t:blocks.text.settings.font_family.label",
+            "default": "var(--font-product-sans)",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.font_family.options.helvetica-neue.label",
+                    "value": "var(--font-helvetica-neue)"
+                },
+                {
+                    "label": "t:blocks.text.settings.font_family.options.product-sans.label",
+                    "value": "var(--font-product-sans)"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "tag",
+            "label": "t:blocks.text.settings.tag.label",
+            "default": "p",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.tag.options.body.label",
+                    "value": "p"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h1.label",
+                    "value": "h1"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h2.label",
+                    "value": "h2"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h3.label",
+                    "value": "h3"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h4.label",
+                    "value": "h4"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h5.label",
+                    "value": "h5"
+                },
+                {
+                    "label": "t:blocks.text.settings.tag.options.h6.label",
+                    "value": "h6"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_size",
+            "label": "t:blocks.text.settings.text_size.label",
+            "default": "var(--font-size-body)",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_size.options.body.label",
+                    "value": "var(--font-size-body)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_size.options.body-lg.label",
+                    "value": "var(--font-size-body-large)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_size.options.h1.label",
+                    "value": "var(--font-size-heading-1)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_size.options.h2.label",
+                    "value": "var(--font-size-heading-2)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_size.options.custom.label",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "font_size_mobile",
+            "label": "t:blocks.text.settings.font_size_mobile.label",
+            "default": 16,
+            "step": 2,
+            "min": 2,
+            "max": 200,
+            "unit": "px",
+            "visible_if": "{{ block.settings.text_size == 'custom' }}"
+        },
+        {
+            "type": "range",
+            "id": "font_size_desktop",
+            "label": "t:blocks.text.settings.font_size_desktop.label",
+            "default": 16,
+            "step": 2,
+            "min": 2,
+            "max": 200,
+            "unit": "px",
+            "visible_if": "{{ block.settings.text_size == 'custom' }}"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.text.settings.header.text-style"
+        },
+        {
+            "type": "checkbox",
+            "id": "force_font_weight",
+            "label": "t:blocks.text.settings.force_font_weight.label",
+            "info": "t:blocks.text.settings.force_font_weight.info",
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "font_weight",
+            "label": "t:blocks.text.settings.font_weight.label",
+            "default": 400,
+            "step": 100,
+            "min": 100,
+            "max": 900,
+            "visible_if": "{{ block.settings.force_font_weight == true }}"
+        },
+        {
+            "type": "select",
+            "id": "text_style",
+            "label": "t:blocks.text.settings.text_style.label",
+            "default": "normal",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_style.options.normal.label",
+                    "value": "normal"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_style.options.italic.label",
+                    "value": "italic"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_decoration",
+            "label": "t:blocks.text.settings.text_decoration.label",
+            "default": "none",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_decoration.options.none.label",
+                    "value": "none"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_decoration.options.underline.label",
+                    "value": "underline"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_decoration.options.overline.label",
+                    "value": "overline"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_decoration.options.line-through.label",
+                    "value": "line-through"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "text_transform",
+            "label": "t:blocks.text.settings.text_transform.label",
+            "default": "none",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_transform.options.none.label",
+                    "value": "none"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_transform.options.uppercase.label",
+                    "value": "uppercase"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_transform.options.lowercase.label",
+                    "value": "lowercase"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_transform.options.capitalize.label",
+                    "value": "capitalize"
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "line_height",
+            "label": "t:blocks.text.settings.line_height.label",
+            "default": 140,
+            "step": 1,
+            "min": 100,
+            "max": 200,
+            "unit": "%"
+        },
+        {
+            "type": "range",
+            "id": "letter_spacing",
+            "label": "t:blocks.text.settings.letter_spacing.label",
+            "default": 0,
+            "step": 1,
+            "min": 0,
+            "max": 100,
+            "unit": "%"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.text.settings.header.color"
+        },
+        {
+            "type": "checkbox",
+            "id": "inherit_text_color",
+            "label": "t:blocks.text.settings.inherit_text_color.label",
+            "info": "t:blocks.text.settings.inherit_text_color.info",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "t:blocks.text.settings.text_color.label",
+            "info": "t:blocks.text.settings.text_color.info",
+            "visible_if": "{{ block.settings.inherit_text_color == false }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "apply_gradient_to_bold_text",
+            "label": "t:blocks.text.settings.apply_gradient_to_bold_text.label",
+            "info": "t:blocks.text.settings.apply_gradient_to_bold_text.info",
+            "default": false
+        },
+        {
+            "type": "select",
+            "id": "gradient_color",
+            "label": "t:blocks.text.settings.gradient_color.label",
+            "default": "var(--gradient-primary)",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.primary.label",
+                    "value": "var(--gradient-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.secondary.label",
+                    "value": "var(--gradient-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.mute.label",
+                    "value": "var(--gradient-mute)"
+                }
+            ],
+            "visible_if": "{{ block.settings.apply_gradient_to_bold_text == true }}"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Text"
+        }
+    ]
+}
+{% endschema %}

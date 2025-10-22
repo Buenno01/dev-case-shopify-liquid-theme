@@ -1,0 +1,68 @@
+{% comment %}
+    Accepts:
+    - text: Text to display
+    - additional_classes: Additional classes to add to the text
+    - additional_attributes: Additional attributes to add to the text
+    - tag: Tag to use for the text
+    - text_size: Text size to use for the text
+    - text_color: Text color to use for the text
+    - text_alignment: Text alignment to use for the text
+    - text_style: Text style to use for the text
+    - text_decoration: Text decoration to use for the text
+    - text_transform: Text transform to use for the text
+    - line_height: Text line height to use for the text
+    - letter_spacing: Text letter spacing to use for the text
+    - font_family: Text font family to use for the text
+    - font_weight: Text font weight to use for the text
+    - force_font_weight: Force font weight to use for the text
+    - font_size_mobile: Text font size to use for the text on mobile
+    - font_size_desktop: Text font size to use for the text on desktop
+{% endcomment %}
+
+{%- liquid
+    assign id = id | default: block.id | default: section.id
+    assign text = text | default: blank
+    assign additional_classes = additional_classes | default: ""
+    assign additional_attributes = additional_attributes | default: ""
+    assign tag = tag | default: "p"
+    assign text_size = text_size | default: "var(--font-size-body)"
+    assign text_color = text_color | default: blank
+    assign text_alignment = text_alignment | default: "left"
+    assign text_style = text_style | default: blank
+    assign text_decoration = text_decoration | default: blank
+    assign text_transform = text_transform | default: blank
+    assign line_height = line_height | default: "120%"
+    assign letter_spacing = letter_spacing | default: blank
+    assign font_family = font_family | default: "var(--font-product-sans)"
+    if force_font_weight
+        assign font_weight = font_weight | default: blank
+    else
+        assign font_weight = blank
+    endif
+    assign font_size_mobile = font_size_mobile | default: blank
+    assign font_size_desktop = font_size_desktop | default: blank
+    assign apply_gradient_to_bold_text = apply_gradient_to_bold_text | default: blank
+    assign gradient_color = gradient_color | default: blank
+-%}
+
+{%- render 'variables-text',
+    id: id,
+    text_size: text_size,
+    text_color: text_color,
+    text_alignment: text_alignment,
+    text_style: text_style,
+    text_decoration: text_decoration,
+    text_transform: text_transform,
+    line_height: line_height,
+    letter_spacing: letter_spacing,
+    font_family: font_family,
+    font_weight: font_weight,
+    font_size_mobile: font_size_mobile,
+    font_size_desktop: font_size_desktop,
+    apply_gradient_to_bold_text: apply_gradient_to_bold_text,
+    gradient_color: gradient_color
+-%}
+
+<{{tag}} class="text text--{{id}} {{ additional_classes }}" {{ additional_attributes }}>
+    {{ text }}
+</{{ tag }}>

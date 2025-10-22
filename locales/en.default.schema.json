@@ -128,5 +128,182 @@
                 }
             }
         }
+    },
+    "blocks": {
+        "text": {
+            "name": "Inline text",
+            "settings": {
+                "header": {
+                    "text": "Text settings",
+                    "color": "Color settings",
+                    "text-style": "Text style settings"
+                },
+                "text": {
+                    "label": "Text content"
+                },
+                "tag": {
+                    "label": "Text hierarchy",
+                    "options": {
+                        "body": {
+                            "label": "Body"
+                        },
+                        "h1": {
+                            "label": "Heading 1"
+                        },
+                        "h2": {
+                            "label": "Heading 2"
+                        },
+                        "h3": {
+                            "label": "Heading 3"
+                        },
+                        "h4": {
+                            "label": "Heading 4"
+                        },
+                        "h5": {
+                            "label": "Heading 5"
+                        },
+                        "h6": {
+                            "label": "Heading 6"
+                        }
+                    }
+                },
+                "text_size": {
+                    "label": "Text size",
+                    "options": {
+                        "body": {
+                            "label": "Body"
+                        },
+                        "body-lg": {
+                            "label": "Body large"
+                        },
+                        "h1": {
+                            "label": "Heading 1"
+                        },
+                        "h2": {
+                            "label": "Heading 1"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "font_size_mobile": {
+                    "label": "Font size for mobile devices"
+                },
+                "font_size_desktop": {
+                    "label": "Font size for desktop"
+                },
+                "text_color": {
+                    "label": "Text color",
+                    "info": "The text color is the color of the text."
+                },
+                "text_alignment": {
+                    "label": "Text alignment",
+                    "options": {
+                        "left": {
+                            "label": "Left"
+                        },
+                        "center": {
+                            "label": "Center"
+                        },
+                        "right": {
+                            "label": "Right"
+                        }
+                    }
+                },
+                "font_weight": {
+                    "label": "Text weight"
+                },
+                "force_font_weight": {
+                    "label": "Force font weight",
+                    "info": "If enabled, the font weight will be forced to the value set in the font weight field."
+                },
+                "apply_gradient_to_bold_text": {
+                    "label": "Apply gradient to bold text",
+                    "info": "If enabled, the gradient will be applied to the bold text."
+                },
+                "gradient_color": {
+                    "label": "Gradient color",
+                    "info": "The gradient color is the color of the gradient.",
+                    "options": {
+                        "primary": {
+                            "label": "Primary"
+                        },
+                        "secondary": {
+                            "label": "Secondary"
+                        },
+                        "mute": {
+                            "label": "Mute"
+                        }
+                    }
+                },
+                "text_style": {
+                    "label": "Text style",
+                    "options": {
+                        "normal": {
+                            "label": "Normal"
+                        },
+                        "italic": {
+                            "label": "Italic"
+                        }
+                    }
+                },
+                "text_decoration": {
+                    "label": "Text decoration",
+                    "options": {
+                        "none": {
+                            "label": "None"
+                        },
+                        "underline": {
+                            "label": "Underline"
+                        },
+                        "overline": {
+                            "label": "Overline"
+                        },
+                        "line-through": {
+                            "label": "Line through"
+                        }
+                    }
+                },
+                "text_transform": {
+                    "label": "Text transform",
+                    "options": {
+                        "none": {
+                            "label": "None"
+                        },
+                        "uppercase": {
+                            "label": "Uppercase"
+                        },
+                        "lowercase": {
+                            "label": "Lowercase"
+                        },
+                        "capitalize": {
+                            "label": "Capitalize"
+                        }
+                    }
+                },
+                "line_height": {
+                    "label": "Line height"
+                },
+                "letter_spacing": {
+                    "label": "Letter spacing"
+                },
+                "font_family": {
+                    "label": "Font family",
+                    "options": {
+                        "helvetica-neue": {
+                            "label": "Helvetica Neue"
+                        },
+                        "product-sans": {
+                            "label": "Product Sans"
+                        }
+                    }
+                },
+                "inherit_text_color": {
+                    "label": "Inherit text color",
+                    "info": "If enabled, the text color will be inherited from the parent element."
+                }
+            }
+        }
     }
 }
