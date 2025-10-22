@@ -1,0 +1,71 @@
+{% comment %}
+  Accepts:
+  - id: String
+  - is_button: Boolean
+  - link: String
+  - text: String
+  - button_type: String
+  - consider_absolute_box: Boolean
+  - additional_attributes: String
+  - additional_classes: String
+  - target: Boolean
+{% endcomment %}
+
+{{ 'button.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign id = id | default: block.id | default: section.id
+
+  assign link = link | default: '#'
+  assign text = text | default: 'Lorem Ipsum dolor sit amet'
+
+  assign button_type = button_type | default: 'primary'
+
+  assign enable_button_carousel = enable_button_carousel | default: false
+
+  assign consider_absolute_box = consider_absolute_box | default: true
+
+  assign font_family = font_family | default: 'var(--titillium-web)'
+
+  assign html_tag = 'a'
+
+  if is_button == true
+    assign html_tag = 'button'
+  endif
+%}
+
+{% render 'variables-button',
+  id: id,
+  text_size: text_size,
+  text_size_mobile: text_size_mobile,
+  text_size_desktop: text_size_desktop,
+  font_family: font_family,
+  width: width
+%}
+
+<{{ html_tag }}
+  {{ additional_attributes }}
+  {% unless is_button %}
+    href='{{ link }}'
+    {% if target == true %}
+      target='_blank'
+    {% endif %}
+  {% endunless %}
+  title='{{ text }}'
+  class='
+    button button--{{ id }} button--{{ button_type }}
+    {% if consider_absolute_box == true and button_type == 'primary' %}
+      button--consider-absolute-box
+    {% endif %}
+    {% if enable_link_active == true and link == request.path or link == request.url %}is-active{% endif %}
+    {% if enable_button_carousel == true %}
+      button--carousel
+    {% endif %}
+
+    {{ additional_classes }}
+  '
+>
+  <span>
+    {{ text }}
+  </span>
+</{{ html_tag }}>

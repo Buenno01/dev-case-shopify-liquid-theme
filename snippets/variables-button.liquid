@@ -1,0 +1,24 @@
+{% liquid
+  assign id = id | default: block.id | default: section.id
+  assign text_size = text_size | default: 'body'
+  assign text_size_mobile = text_size_mobile | default: 12
+  assign text_size_desktop = text_size_desktop | default: 16
+
+  assign font_family = font_family | default: 'var(--titillium-web)'
+
+  assign width = width | default: 'auto'
+%}
+
+<style>
+  .button.button--{{ id }} {
+    {%- unless text_size != 'custom' -%}
+      font-size: {% render 'design.clamp', min: text_size_mobile, max: text_size_desktop %};
+    {% else %}
+      font-size: {{ text_size }};
+    {%- endunless -%}
+
+    font-family: {{ font_family }};
+
+    width: {{ width }};
+  }
+</style>

@@ -130,6 +130,85 @@
         }
     },
     "blocks": {
+        "button": {
+            "name": "Button",
+            "settings": {
+                "header": {
+                    "width": "Width settings"
+                },
+                "button_type": {
+                    "label": "Button type",
+                    "options": {
+                        "primary": {
+                            "label": "Primary"
+                        },
+                        "secondary": {
+                            "label": "Secondary"
+                        }
+                    }
+                },
+                "text": {
+                    "label": "Text"
+                },
+                "link": {
+                    "label": "Link"
+                },
+                "text_size": {
+                    "label": "Text size",
+                    "options": {
+                        "body-lg": {
+                            "label": "Body large"
+                        },
+                        "body": {
+                            "label": "Body"
+                        },
+                        "h1": {
+                            "label": "Heading 1"
+                        },
+                        "h2": {
+                            "label": "Heading 2"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "text_size_mobile": {
+                    "label": "Text size (mobile)"
+                },
+                "text_size_desktop": {
+                    "label": "Text size (desktop)"
+                },
+                "font_family": {
+                    "label": "Font family",
+                    "options": {
+                        "helvetica_neue": {
+                            "label": "Helvetica Neue"
+                        },
+                        "product_sans": {
+                            "label": "Product Sans"
+                        }
+                    }
+                },
+                "width": {
+                    "label": "Width",
+                    "options": {
+                        "full": {
+                            "label": "Full"
+                        },
+                        "auto": {
+                            "label": "Auto"
+                        },
+                        "fit-content": {
+                            "label": "Fit"
+                        }
+                    }
+                },
+                "target": {
+                    "label": "Open in new tab"
+                }
+            }
+        },
         "icon": {
             "name": "Icon",
             "settings": {
@@ -200,7 +279,7 @@
                             "label": "Heading 1"
                         },
                         "h2": {
-                            "label": "Heading 1"
+                            "label": "Heading 2"
                         },
                         "custom": {
                             "label": "Custom"
@@ -219,6 +298,7 @@
                 },
                 "text_alignment": {
                     "label": "Text alignment",
+                    "label_mobile": "Text alignment (mobile)",
                     "options": {
                         "left": {
                             "label": "Left"
