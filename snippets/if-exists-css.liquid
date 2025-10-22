@@ -1,0 +1,8 @@
+{% comment %}
+    Accepts:
+    - key: css key to render,
+    - value: value rendered if exists
+{% endcomment %}
+{% if value != blank -%}
+    {{ key }}: {{value}};
+{%- endif %}

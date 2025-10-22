@@ -1,0 +1,18 @@
+<style>
+    .text--{{ id }} {
+        {% if text_size == 'custom' -%}
+            font-size: {%  render 'design.clamp', min: font_size_mobile, max: font_size_desktop %}
+        {%- else -%}
+            font-size: {{ text_size }};
+        {%- endif %}
+        {% render 'if-exists-css' key: 'text-transform', value: text_transform %}
+        {% render 'if-exists-css' key: 'letter-spacing', value: letter_spacing %}
+        {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+        {% render 'if-exists-css' key: 'font-style', value: text_style %}
+        {% render 'if-exists-css' key: 'text-decoration', value: text_decoration %}
+        {% render 'if-exists-css' key: 'color', value: text_color %}
+        {% render 'if-exists-css' key: 'text-align', value: text_alignment %}
+        {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+        {% render 'if-exists-css' key: 'font-family', value: font_family %}
+    }
+</style>
