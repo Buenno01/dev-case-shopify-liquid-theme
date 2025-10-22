@@ -1,0 +1,755 @@
+{% liquid
+    assign direction = block.settings.direction
+    assign direction_mobile = block.settings.direction_mobile
+    assign alignment = block.settings.alignment
+    assign alignment_mobile = block.settings.alignment_mobile
+    assign justify = block.settings.justify
+    assign justify_mobile = block.settings.justify_mobile
+    assign border = block.settings.border
+    assign border_color = block.settings.border_color
+    assign border_gradient = block.settings.border_gradient
+    assign border_width = block.settings.border_width | append: 'px'
+    assign border_radius = block.settings.border_radius
+    assign border_radius_mobile = block.settings.border_radius_mobile
+
+    assign background = block.settings.background
+    if background == 'color' and block.settings.background_color == 'custom'
+        assign background = block.settings.custom_color
+    elsif background == 'color'
+        assign background = block.settings.background_color
+    elsif background == 'gradient' and block.settings.background_gradient == 'custom'
+        assign background = block.settings.custom_gradient
+    elsif background == 'gradient'
+        assign background = block.settings.background_gradient
+    endif
+
+    assign enable_padding = block.settings.enable_padding
+
+    if enable_padding
+        assign padding_inline_differs = block.settings.padding_inline_differs
+
+        if padding_inline_differs
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_left_mobile, max: block.settings.padding_left
+            endcapture
+
+            assign padding_inline = clamp
+
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_right_mobile, max: block.settings.padding_right
+            endcapture
+
+            assign padding_inline = padding_inline | append: ' ' | append: clamp | replace: ';', ''
+        
+        else
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_inline_mobile, max: block.settings.padding_inline
+            endcapture
+            assign padding_inline = clamp | replace: ';', ''
+        endif
+
+        if padding_block_differs
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_top_mobile, max: block.settings.padding_top
+            endcapture
+
+            assign padding_block = clamp
+
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_bottom_mobile, max: block.settings.padding_bottom
+            endcapture
+
+            assign padding_block = padding_block | append: ' ' | append: clamp | replace: ';', ''
+        
+        else
+            capture clamp
+                render 'design.clamp', min: block.settings.padding_block_mobile, max: block.settings.padding_block
+            endcapture
+            assign padding_block = clamp | replace: ';', ''
+        endif
+    endif
+
+    assign enable_gap = block.settings.enable_gap
+    if enable_gap
+        assign gap = block.settings.gap
+        assign gap_mobile = block.settings.gap_mobile
+    endif
+
+    assign width = block.settings.width
+
+    if width == 'custom'
+        assign width = block.settings.custom_width | append: '%'
+    else
+        assign width = block.settings.width
+    endif
+
+    assign width_mobile = block.settings.width_mobile
+
+    if width_mobile == 'custom'
+    assign width_mobile = block.settings.custom_width_mobile | append: '%'
+    else
+        assign width_mobile = block.settings.width_mobile
+    endif
+%}
+
+{% capture content %}
+    {% content_for 'blocks' %}
+{% endcapture %}
+
+{% render 'group',
+    content: content,
+    id: block.id,
+    additional_attributes: block.shopify_attributes,
+    direction: direction,
+    direction_mobile: direction_mobile,
+    alignment: alignment,
+    alignment_mobile: alignment_mobile,
+    gap: gap,
+    gap_mobile: gap_mobile,
+    justify: justify,
+    justify_mobile: justify_mobile,
+    border: border,
+    border_color: border_color,
+    border_gradient: border_gradient,
+    border_width: border_width,
+    border_radius: border_radius,
+    border_radius_mobile: border_radius_mobile,
+    padding_inline: padding_inline,
+    padding_block: padding_block,
+    background: background,
+    width: width,
+    width_mobile: width_mobile,
+    color_scheme: block.settings.color_scheme
+%}
+
+{% schema %}
+{
+    "name": "t:blocks.group.name",
+    "tag": null,
+    "settings": [
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.color_scheme"
+        },
+        {
+            "type": "color_scheme",
+            "id": "color_scheme",
+            "label": "t:blocks.group.settings.color_scheme.label",
+            "default": "scheme-1"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.direction"
+        },
+        {
+            "type": "select",
+            "id": "direction",
+            "label": "t:blocks.group.settings.direction.label",
+            "default": "row",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.direction.options.row.label",
+                    "value": "row"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.column.label",
+                    "value": "column"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.row-reverse.label",
+                    "value": "row-reverse"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.column-reverse.label",
+                    "value": "column-reverse"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "direction_mobile",
+            "label": "t:blocks.group.settings.direction.label_mobile",
+            "default": "row",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.direction.options.row.label",
+                    "value": "row"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.column.label",
+                    "value": "column"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.row-reverse.label",
+                    "value": "row-reverse"
+                },
+                {
+                    "label": "t:blocks.group.settings.direction.options.column-reverse.label",
+                    "value": "column-reverse"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.items"
+        },
+        {
+            "type": "select",
+            "id": "alignment",
+            "label": "t:blocks.group.settings.alignment.label",
+            "default": "start",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.alignment.options.start.label",
+                    "value": "start"
+                },
+                {
+                    "label": "t:blocks.group.settings.alignment.options.center.label",
+                    "value": "center"
+                },
+                {
+                    "label": "t:blocks.group.settings.alignment.options.end.label",
+                    "value": "end"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "alignment_mobile",
+            "label": "t:blocks.group.settings.alignment.label_mobile",
+            "default": "start",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.alignment.options.start.label",
+                    "value": "start"
+                },
+                {
+                    "label": "t:blocks.group.settings.alignment.options.center.label",
+                    "value": "center"
+                },
+                {
+                    "label": "t:blocks.group.settings.alignment.options.end.label",
+                    "value": "end"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.justify"
+        },
+        {
+            "type": "select",
+            "id": "justify",
+            "label": "t:blocks.group.settings.justify.label",
+            "default": "start",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.justify.options.start.label",
+                    "value": "start"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.center.label",
+                    "value": "center"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.end.label",
+                    "value": "end"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.between.label",
+                    "value": "between"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.around.label",
+                    "value": "around"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.evenly.label",
+                    "value": "evenly"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "justify_mobile",
+            "label": "t:blocks.group.settings.justify.label_mobile",
+            "default": "start",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.justify.options.start.label",
+                    "value": "start"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.center.label",
+                    "value": "center"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.end.label",
+                    "value": "end"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.between.label",
+                    "value": "between"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.around.label",
+                    "value": "around"
+                },
+                {
+                    "label": "t:blocks.group.settings.justify.options.evenly.label",
+                    "value": "evenly"
+                }
+            ]
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.border"
+        },
+        {
+            "type": "select",
+            "id": "border",
+            "label": "t:blocks.group.settings.border.label",
+            "default": "none",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.border.options.none.label",
+                    "value": "none"
+                },
+                {
+                    "label": "t:blocks.group.settings.border.options.color.label",
+                    "value": "color"
+                },
+                {
+                    "label": "t:blocks.group.settings.border.options.gradient.label",
+                    "value": "gradient"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "border_color",
+            "label": "t:blocks.group.settings.border_color.label",
+            "default": "#000000",
+            "visible_if": "{{ block.settings.border == 'color' }}"
+        },
+        {
+            "type": "select",
+            "id": "border_gradient",
+            "label": "t:blocks.group.settings.border_gradient.label",
+            "default": "var(--gradient-primary)",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.border_gradient.options.primary.label",
+                    "value": "var(--gradient-primary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.border_gradient.options.secondary.label",
+                    "value": "var(--gradient-secondary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.border_gradient.options.mute.label",
+                    "value": "var(--gradient-mute)"
+                }
+            ],
+            "visible_if": "{{ block.settings.border == 'gradient' }}"
+        },
+        {
+            "type": "range",
+            "id": "border_width",
+            "label": "t:blocks.group.settings.border_width.label",
+            "default": 1,
+            "min": 0,
+            "max": 10,
+            "step": 1,
+            "unit": "px",
+            "visible_if": "{{ block.settings.border != 'none' }}"
+        },
+        {
+            "type": "range",
+            "id": "border_radius",
+            "label": "t:blocks.group.settings.border_radius.label",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "visible_if": "{{ block.settings.border != 'none' }}"
+        },
+        {
+            "type": "range",
+            "id": "border_radius_mobile",
+            "label": "t:blocks.group.settings.border_radius.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "visible_if": "{{ block.settings.border != 'none' }}"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.background"
+        },
+        {
+            "type": "select",
+            "id": "background",
+            "label": "t:blocks.group.settings.background.label",
+            "default": "none",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.background.options.none.label",
+                    "value": "none"
+                },
+                {
+                    "label": "t:blocks.group.settings.background.options.color.label",
+                    "value": "color"
+                },
+                {
+                    "label": "t:blocks.group.settings.background.options.gradient.label",
+                    "value": "gradient"
+                }
+            ]
+        },
+        {
+            "type": "select",
+            "id": "background_color",
+            "label": "t:blocks.group.settings.background_color.label",
+            "default": "var(--color-background-primary)",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.background_color.options.primary.label",
+                    "value": "var(--color-background-primary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_color.options.secondary.label",
+                    "value": "var(--color-background-secondary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_color.options.tertiary.label",
+                    "value": "var(--color-background-tertiary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_color.options.invert.label",
+                    "value": "var(--color-background-invert)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_color.options.custom.label",
+                    "value": "custom"
+                }
+            ],
+            "visible_if": "{{ block.settings.background == 'color' }}"
+        },
+        {
+            "type": "color",
+            "id": "custom_color",
+            "label": "t:blocks.group.settings.custom_color.label",
+            "default": "#000000",
+            "visible_if": "{{ block.settings.background_color == 'custom' and block.settings.background == 'color' }}"
+        },
+        {
+            "type": "select",
+            "id": "background_gradient",
+            "label": "t:blocks.group.settings.background_gradient.label",
+            "default": "var(--gradient-primary)",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.background_gradient.options.primary.label",
+                    "value": "var(--gradient-primary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_gradient.options.secondary.label",
+                    "value": "var(--gradient-secondary)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_gradient.options.mute.label",
+                    "value": "var(--gradient-mute)"
+                },
+                {
+                    "label": "t:blocks.group.settings.background_gradient.options.custom.label",
+                    "value": "custom"
+                }
+            ],
+            "visible_if": "{{ block.settings.background == 'gradient' }}"
+        },
+        {
+            "type": "color_background",
+            "id": "custom_gradient",
+            "label": "t:blocks.group.settings.custom_gradient.label",
+            "default": "linear-gradient(270deg, #8C8DC6 0%, #282460 100%)",
+            "visible_if": "{{ block.settings.background_gradient == 'custom' and block.settings.background == 'gradient' }}"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.gap"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_gap",
+            "label": "t:blocks.group.settings.enable_gap.label",
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "gap",
+            "label": "t:blocks.group.settings.gap.label",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_gap == true }}"
+        },
+        {
+            "type": "range",
+            "id": "gap_mobile",
+            "label": "t:blocks.group.settings.gap.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_gap == true }}"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.padding"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_padding",
+            "label": "t:blocks.group.settings.enable_padding.label",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "padding_inline_differs",
+            "label": "t:blocks.group.settings.padding_inline_differs.label",
+            "default": false,
+            "visible_if": "{{ block.settings.enable_padding == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_inline",
+            "label": "t:blocks.group.settings.padding_inline.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == false }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_inline_mobile",
+            "label": "t:blocks.group.settings.padding_inline.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == false }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_left",
+            "label": "t:blocks.group.settings.padding_left.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_left_mobile",
+            "label": "t:blocks.group.settings.padding_left.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_right",
+            "label": "t:blocks.group.settings.padding_right.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_right_mobile",
+            "label": "t:blocks.group.settings.padding_right.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_inline_differs == true }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "padding_block_differs",
+            "label": "t:blocks.group.settings.padding_block_differs.label",
+            "default": false,
+            "visible_if": "{{ block.settings.enable_padding == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_block",
+            "label": "t:blocks.group.settings.padding_block.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == false }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_block_mobile",
+            "label": "t:blocks.group.settings.padding_block.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == false }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_top",
+            "label": "t:blocks.group.settings.padding_top.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_top_mobile",
+            "label": "t:blocks.group.settings.padding_top.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom",
+            "label": "t:blocks.group.settings.padding_bottom.label",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == true }}"
+        },
+        {
+            "type": "range",
+            "id": "padding_bottom_mobile",
+            "label": "t:blocks.group.settings.padding_bottom.label_mobile",
+            "default": 0,
+            "min": 0,
+            "max": 200,
+            "step": 2,
+            "unit": "px",
+            "visible_if": "{{ block.settings.enable_padding == true and block.settings.padding_block_differs == true }}"
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.group.settings.header.width"
+        },
+        {
+            "type": "select",
+            "id": "width",
+            "label": "t:blocks.group.settings.width.label",
+            "default": "full",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.width.options.full.label",
+                    "value": "full"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.fit.label",
+                    "value": "fit-content"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.container.label",
+                    "value": "var(--page-width)"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.custom.label",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "custom_width",
+            "label": "t:blocks.group.settings.custom_width.label",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "visible_if": "{{ block.settings.width == 'custom' }}"
+        },
+        {
+            "type": "select",
+            "id": "width_mobile",
+            "label": "t:blocks.group.settings.width.label_mobile",
+            "default": "full",
+            "options": [
+                {
+                    "label": "t:blocks.group.settings.width.options.full.label",
+                    "value": "full"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.fit.label",
+                    "value": "fit-content"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.container.label",
+                    "value": "var(--page-width)"
+                },
+                {
+                    "label": "t:blocks.group.settings.width.options.custom.label",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "type": "range",
+            "id": "custom_width_mobile",
+            "label": "t:blocks.group.settings.custom_width.label_mobile",
+            "default": 100,
+            "min": 0,
+            "max": 100,
+            "step": 1,
+            "unit": "%",
+            "visible_if": "{{ block.settings.width_mobile == 'custom' }}"
+        }
+    ],
+    "blocks": [
+        {
+            "type": "@theme"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Group"
+        }
+    ]
+}
+{% endschema %}

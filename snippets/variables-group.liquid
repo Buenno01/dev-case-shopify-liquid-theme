@@ -1,0 +1,74 @@
+{% liquid
+    assign id = id | default: blank
+    assign width = width | default: "full"
+    assign width_mobile = width_mobile | default: "full"
+    assign padding_inline = padding_inline | default: blank
+    assign padding_block = padding_block | default: blank
+    assign gap = gap | default: blank
+    assign gap_mobile = gap_mobile | default: blank
+    assign direction = direction | default: "row"
+    assign direction_mobile = direction_mobile | default: "column"
+    assign alignment = alignment | default: "start"
+    assign alignment_mobile = alignment_mobile | default: "start"
+    assign justify = justify | default: "start"
+    assign justify_mobile = justify_mobile | default: "start"
+    assign border = border | default: "none"
+    assign border_color = border_color | default: blank
+    assign border_gradient = border_gradient | default: blank
+    assign border_width = border_width | default: blank
+    assign border_radius = border_radius | default: 0
+    assign border_radius_mobile = border_radius_mobile | default: 0
+    assign background = background | default: "none"
+%}
+
+<style>
+    .group--{{id}} {
+        border-radius: {% render 'design.clamp', min: border_radius_mobile, max: border_radius %};
+        {% if border == 'color' %}
+            border-style: solid;
+            {% render 'if-exists-css' key: 'border-color', value: border_color %}
+            {% render 'if-exists-css' key: 'border-width', value: border_width %}
+        {% elsif border == 'gradient' %}
+            overflow: hidden;
+            border: {{ border_width }} solid transparent;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            {% if background != blank and background != 'none' %}
+                background-image: linear-gradient({{ background }}, {{ background }}), {{ border_gradient }};
+            {% else %}
+                background-image: linear-gradient(var(--color-background), var(--color-background)), {{ border_gradient }};
+            {% endif %}
+        {% endif %}
+        {% if border != 'gradient' %}
+            {% render 'if-exists-css' key: 'background', value: background %}
+        {% endif %}
+    }
+
+    {% if border == 'gradient' %}
+    .group--{{id}} .group__inner {
+        {% render 'if-exists-css' key: 'background', value: background %}
+    }
+    {% endif %}
+
+    .group--{{id}} .group__items {
+        width: {{ width_mobile }};
+        padding-inline: {{ padding_inline }};
+        padding-block: {{ padding_block }};
+        {% if gap != blank and gap_mobile != blank %}
+            gap: {% render 'design.clamp', min: gap_mobile, max: gap %};
+        {% endif %}
+        display: flex;
+        {% render 'if-exists-css' key: 'flex-direction', value: direction_mobile %}
+        {% render 'if-exists-css' key: 'align-items', value: alignment_mobile %}
+        {% render 'if-exists-css' key: 'justify-content', value: justify_mobile %}
+    }
+
+    @media screen and (min-width: 768px) {
+        .group--{{id}} .group__items {
+            width: {{ width }};
+            {% render 'if-exists-css' key: 'flex-direction', value: direction %}
+            {% render 'if-exists-css' key: 'align-items', value: alignment %}
+            {% render 'if-exists-css' key: 'justify-content', value: justify %}
+        }
+    }
+</style>

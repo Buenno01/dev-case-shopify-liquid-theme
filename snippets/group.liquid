@@ -1,0 +1,84 @@
+{% comment %}
+    Accepts:
+    - content: string
+    - id: string
+    - width: string
+    - width_mobile: string
+    - padding_inline: string
+    - padding_block: string
+    - gap: string
+    - gap_mobile: string
+    - additional_classes: string
+    - additional_attributes: string
+    - color_scheme: string
+    - direction: string
+    - direction_mobile: string
+    - alignment: string
+    - alignment_mobile: string
+    - justify: string
+    - justify_mobile: string
+    - border: string
+    - border_color: string
+    - border_gradient: string
+    - border_width: string
+    - border_radius: string
+    - border_radius_mobile: string
+    - background: string
+    - color_scheme: string
+{% endcomment %}
+
+{% liquid
+    assign id = id | default: blank
+    assign width = width | default: "full"
+    assign width_mobile = width_mobile | default: "full"
+    assign padding_inline = padding_inline | default: blank
+    assign padding_block = padding_block | default: blank
+    assign gap = gap | default: blank
+    assign gap_mobile = gap_mobile | default: blank
+    assign additional_classes = additional_classes | default: blank
+    assign additional_attributes = additional_attributes | default: blank
+    assign color_scheme = color_scheme | default: blank
+    assign direction = direction | default: "row"
+    assign direction_mobile = direction_mobile | default: "column"
+    assign alignment = alignment | default: "start"
+    assign alignment_mobile = alignment_mobile | default: "start"
+    assign justify = justify | default: "start"
+    assign justify_mobile = justify_mobile | default: "start"
+    assign border = border | default: "none"
+    assign border_color = border_color | default: blank
+    assign border_gradient = border_gradient | default: blank
+    assign border_width = border_width | default: blank
+    assign border_radius = border_radius | default: 0
+    assign border_radius_mobile = border_radius_mobile | default: 0
+    assign background = background | default: "none"
+%}
+
+{% render 'variables-group',
+    id: id,
+    width: width,
+    width_mobile: width_mobile,
+    padding_inline: padding_inline,
+    padding_block: padding_block,
+    gap: gap,
+    gap_mobile: gap_mobile,
+    direction_mobile: direction_mobile,
+    alignment: alignment,
+    alignment_mobile: alignment_mobile,
+    justify: justify,
+    justify_mobile: justify_mobile,
+    border: border,
+    border_color: border_color,
+    border_gradient: border_gradient,
+    border_width: border_width,
+    border_radius: border_radius,
+    border_radius_mobile: border_radius_mobile,
+    background: background
+%}
+
+<div class="group group--{{id}} color-{{color_scheme}} {{ additional_classes }}" {{ additional_attributes }}>
+    <div class="group__inner">
+        <div class="group__items">
+            {{ content }}
+        </div>
+    </div>
+</div>

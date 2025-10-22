@@ -304,6 +304,241 @@
                     "info": "If enabled, the text color will be inherited from the parent element."
                 }
             }
+        },
+        "group": {
+            "name": "Group",
+            "settings": {
+                "header": {
+                    "direction": "Direction settings",
+                    "items": "Items alignment settings",
+                    "justify": "Content position settings",
+                    "border": "Border settings",
+                    "background": "Background settings",
+                    "color_scheme": "Color scheme settings",
+                    "gap": "Gap settings",
+                    "padding": "Padding settings",
+                    "width": "Width settings"
+                },
+                "color_scheme": {
+                    "label": "Color scheme"
+                },
+                "direction": {
+                    "label": "Direction",
+                    "label_mobile": "Direction (mobile)",
+                    "options": {
+                        "row": {
+                            "label": "Row"
+                        },
+                        "column": {
+                            "label": "Column"
+                        },
+                        "row-reverse": {
+                            "label": "Row reverse"
+                        },
+                        "column-reverse": {
+                            "label": "Column reverse"
+                        }
+                    }
+                },
+                "alignment": {
+                    "label": "Alignment",
+                    "label_mobile": "Alignment (mobile)",
+                    "options": {
+                        "start": {
+                            "label": "Start"
+                        },
+                        "center": {
+                            "label": "Center"
+                        },
+                        "end": {
+                            "label": "End"
+                        }
+                    }
+                },
+                "justify": {
+                    "label": "Justify",
+                    "label_mobile": "Justify (mobile)",
+                    "options": {
+                        "start": {
+                            "label": "Start"
+                        },
+                        "center": {
+                            "label": "Center"
+                        },
+                        "end": {
+                            "label": "End"
+                        },
+                        "between": {
+                            "label": "Between"
+                        },
+                        "around": {
+                            "label": "Around"
+                        },
+                        "evenly": {
+                            "label": "Evenly"
+                        }
+                    }
+                },
+                "border": {
+                    "label": "Border",
+                    "options": {
+                        "none": {
+                            "label": "None"
+                        },
+                        "color": {
+                            "label": "Color"
+                        },
+                        "gradient": {
+                            "label": "Gradient"
+                        }
+                    }
+                },
+                "border_color": {
+                    "label": "Border color"
+                },
+                "border_gradient": {
+                    "label": "Border gradient",
+                    "options": {
+                        "primary": {
+                            "label": "Primary"
+                        },
+                        "secondary": {
+                            "label": "Secondary"
+                        },
+                        "mute": {
+                            "label": "Mute"
+                        }
+                    }
+                },
+                "border_width": {
+                    "label": "Border width"
+                },
+                "border_radius": {
+                    "label": "Border radius",
+                    "label_mobile": "Border radius (mobile)"
+                },
+                "background": {
+                    "label": "Background",
+                    "options": {
+                        "none": {
+                            "label": "None"
+                        },
+                        "color": {
+                            "label": "Color"
+                        },
+                        "gradient": {
+                            "label": "Gradient"
+                        }
+                    }
+                },
+                "background_color": {
+                    "label": "Background color",
+                    "options": {
+                        "primary": {
+                            "label": "Primary"
+                        },
+                        "secondary": {
+                            "label": "Secondary"
+                        },
+                        "tertiary": {
+                            "label": "Tertiary"
+                        },
+                        "invert": {
+                            "label": "Invert"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "custom_color": {
+                    "label": "Custom color"
+                },
+                "background_gradient": {
+                    "label": "Background gradient",
+                    "options": {
+                        "primary": {
+                            "label": "Primary"
+                        },
+                        "secondary": {
+                            "label": "Secondary"
+                        },
+                        "mute": {
+                            "label": "Mute"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "custom_gradient": {
+                    "label": "Custom gradient"
+                },
+                "enable_gap": {
+                    "label": "Enable gap"
+                },
+                "gap": {
+                    "label": "Gap",
+                    "label_mobile": "Gap (mobile)"
+                },
+                "enable_padding": {
+                    "label": "Enable padding"
+                },
+                "padding_inline": {
+                    "label": "Horizontal Padding",
+                    "label_mobile": "Horizontal Padding (mobile)"
+                },
+                "padding_block": {
+                    "label": "Vertical Padding",
+                    "label_mobile": "Vertical Padding (mobile)"
+                },
+                "padding_top": {
+                    "label": "Top Padding",
+                    "label_mobile": "Top Padding (mobile)"
+                },
+                "padding_bottom": {
+                    "label": "Bottom Padding",
+                    "label_mobile": "Bottom Padding (mobile)"
+                },
+                "padding_left": {
+                    "label": "Left Padding",
+                    "label_mobile": "Left Padding (mobile)"
+                },
+                "padding_right": {
+                    "label": "Right Padding",
+                    "label_mobile": "Right Padding (mobile)"
+                },
+                "padding_inline_differs": {
+                    "label": "Horizontal padding is different on each side",
+                    "label_mobile": "Horizontal padding is different on each side (mobile)"
+                },
+                "padding_block_differs": {
+                    "label": "Vertical padding is different on each side",
+                    "label_mobile": "Vertical padding is different on each side (mobile)"
+                },
+                "width": {
+                    "label": "Width",
+                    "label_mobile": "Width (mobile)",
+                    "options": {
+                        "full": {
+                            "label": "Full"
+                        },
+                        "fit": {
+                            "label": "Fit"
+                        },
+                        "container": {
+                            "label": "Container"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
+                "custom_width": {
+                    "label": "Custom width",
+                    "label_mobile": "Custom width (mobile)"
+                }
+            }
         }
     }
 }
