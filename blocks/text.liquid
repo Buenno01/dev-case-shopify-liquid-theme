@@ -15,6 +15,28 @@
             assign text_color = blck.text_color_options
         endif
     endif
+    assign apply_gradient_to_bold_text = blck.apply_gradient_to_bold_text
+    assign gradient_color = blck.gradient_color
+
+    assign enable_text_color_mobile = blck.enable_text_color_mobile
+
+    if enable_text_color_mobile
+        assign inherit_text_color_mobile = blck.inherit_text_color_mobile
+        assign force_font_weight_mobile = blck.force_font_weight_mobile
+        assign font_weight_mobile = blck.font_weight_mobile
+        if inherit_text_color_mobile
+            assign text_color_mobile = blank
+        else
+            if blck.text_color_options_mobile == 'custom'
+                assign text_color_mobile = blank
+            else
+                assign text_color_mobile = blck.text_color_options_mobile
+            endif
+        endif
+        assign apply_gradient_to_bold_text_mobile = blck.apply_gradient_to_bold_text_mobile
+        assign gradient_color_mobile = blck.gradient_color_mobile
+    endif
+
     assign text_alignment = blck.text_alignment
     assign text_alignment_mobile = blck.text_alignment_mobile
     assign text_style = blck.text_style
@@ -27,8 +49,6 @@
     assign force_font_weight = blck.force_font_weight
     assign font_size_mobile = blck.font_size_mobile
     assign font_size_desktop = blck.font_size_desktop
-    assign apply_gradient_to_bold_text = blck.apply_gradient_to_bold_text
-    assign gradient_color = blck.gradient_color
 %}
 
 {% render 'text',
@@ -37,7 +57,6 @@
     additional_attributes: additional_attributes,
     tag: tag,
     text_size: text_size,
-    text_color: text_color,
     text_alignment: text_alignment,
     text_alignment_mobile: text_alignment_mobile,
     text_style: text_style,
@@ -48,10 +67,17 @@
     font_family: font_family,
     font_weight: font_weight,
     force_font_weight: force_font_weight,
+    font_weight_mobile: font_weight_mobile,
+    force_font_weight_mobile: force_font_weight_mobile,
     font_size_mobile: font_size_mobile,
     font_size_desktop: font_size_desktop,
+    text_color: text_color,
+    text_color_mobile: text_color_mobile,
     apply_gradient_to_bold_text: apply_gradient_to_bold_text,
-    gradient_color: gradient_color
+    apply_gradient_to_bold_text_mobile: apply_gradient_to_bold_text_mobile,
+    gradient_color: gradient_color,
+    gradient_color_mobile: gradient_color_mobile,
+    enable_text_color_mobile: enable_text_color_mobile
 %}
 {% schema %}
 {
@@ -408,7 +434,128 @@
                 }
             ],
             "visible_if": "{{ block.settings.apply_gradient_to_bold_text == true }}"
-        }
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_text_color_mobile",
+            "label": "t:blocks.text.settings.enable_text_color_mobile.label",
+            "default": false
+        },
+        {
+            "type": "header",
+            "content": "t:blocks.text.settings.header.text-style-mobile",
+            "visible_if": "{{ block.settings.enable_text_color_mobile == true }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "inherit_text_color_mobile",
+            "label": "t:blocks.text.settings.inherit_text_color.label",
+            "info": "t:blocks.text.settings.inherit_text_color.info",
+            "default": true,
+            "visible_if": "{{ block.settings.enable_text_color_mobile == true }}"
+        },
+        {
+            "type": "select",
+            "id": "text_color_options_mobile",
+            "label": "t:blocks.text.settings.text_color_options.label",
+            "info": "t:blocks.text.settings.text_color.info",
+            "visible_if": "{{ block.settings.inherit_text_color_mobile == false and block.settings.enable_text_color_mobile == true }}",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_primary.label",
+                    "value": "var(--color-text-heading-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_secondary.label",
+                    "value": "var(--color-text-heading-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_invert.label",
+                    "value": "var(--color-text-heading-invert)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_primary.label",
+                    "value": "var(--color-text-body-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_secondary.label",
+                    "value": "var(--color-text-body-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_invert.label",
+                    "value": "var(--color-text-body-invert)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_primary.label",
+                    "value": "var(--color-accent-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_secondary.label",
+                    "value": "var(--color-accent-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_mute.label",
+                    "value": "var(--color-accent-mute)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.custom.label",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
+            "type": "color",
+            "id": "text_color_mobile",
+            "label": "t:blocks.text.settings.text_color.label",
+            "info": "t:blocks.text.settings.text_color.info",
+            "visible_if": "{{ block.settings.inherit_text_color_mobile == false and block.settings.text_color_options_mobile == 'custom' and block.settings.enable_text_color_mobile == true }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "apply_gradient_to_bold_text_mobile",
+            "label": "t:blocks.text.settings.apply_gradient_to_bold_text.label",
+            "info": "t:blocks.text.settings.apply_gradient_to_bold_text.info",
+            "default": false,
+            "visible_if": "{{ block.settings.enable_text_color_mobile == true }}"
+        },
+        {
+            "type": "select",
+            "id": "gradient_color_mobile",
+            "label": "t:blocks.text.settings.gradient_color.label",
+            "default": "var(--gradient-primary)",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.primary.label",
+                    "value": "var(--gradient-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.secondary.label",
+                    "value": "var(--gradient-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.gradient_color.options.mute.label",
+                    "value": "var(--gradient-mute)"
+                }
+            ],
+            "visible_if": "{{ block.settings.apply_gradient_to_bold_text_mobile == true and block.settings.enable_text_color_mobile == true }}"
+        },
+        {
+            "type": "checkbox",
+            "id": "force_font_weight_mobile",
+            "label": "t:blocks.text.settings.force_font_weight.label",
+            "info": "t:blocks.text.settings.force_font_weight.info",
+            "default": false
+        },
+        {
+            "type": "range",
+            "id": "font_weight_mobile",
+            "label": "t:blocks.text.settings.font_weight.label",
+            "default": 400,
+            "step": 100,
+            "min": 100,
+            "max": 900,
+            "visible_if": "{{ block.settings.force_font_weight == true }}"
+        },
     ],
     "presets": [
         {

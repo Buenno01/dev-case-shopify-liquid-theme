@@ -257,7 +257,8 @@
                 "header": {
                     "text": "Text settings",
                     "color": "Color settings",
-                    "text-style": "Text style settings"
+                    "text-style": "Text style settings",
+                    "text-style-mobile": "Text style settings (Mobile)"
                 },
                 "text": {
                     "label": "Text content"
@@ -296,6 +297,9 @@
                             "label": "Custom"
                         }
                     }
+                },
+                "enable_text_color_mobile": {
+                    "label": "Change styles for mobile devices"
                 },
                 "tag": {
                     "label": "Text hierarchy",

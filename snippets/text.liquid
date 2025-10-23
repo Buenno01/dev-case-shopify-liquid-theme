@@ -40,10 +40,19 @@
     else
         assign font_weight = blank
     endif
+    if force_font_weight_mobile
+        assign font_weight_mobile = font_weight_mobile | default: blank
+    else
+        assign font_weight_mobile = blank
+    endif
     assign font_size_mobile = font_size_mobile | default: blank
     assign font_size_desktop = font_size_desktop | default: blank
     assign apply_gradient_to_bold_text = apply_gradient_to_bold_text | default: blank
     assign gradient_color = gradient_color | default: blank
+    assign text_color_mobile = text_color_mobile | default: blank
+    assign apply_gradient_to_bold_text_mobile = apply_gradient_to_bold_text_mobile | default: blank
+    assign gradient_color_mobile = gradient_color_mobile | default: blank
+    assign enable_text_color_mobile = enable_text_color_mobile | default: false
 -%}
 
 {%- render 'variables-text',
@@ -59,10 +68,15 @@
     letter_spacing: letter_spacing,
     font_family: font_family,
     font_weight: font_weight,
+    font_weight_mobile: font_weight_mobile,
     font_size_mobile: font_size_mobile,
     font_size_desktop: font_size_desktop,
     apply_gradient_to_bold_text: apply_gradient_to_bold_text,
-    gradient_color: gradient_color
+    gradient_color: gradient_color,
+    text_color_mobile: text_color_mobile,
+    apply_gradient_to_bold_text_mobile: apply_gradient_to_bold_text_mobile,
+    gradient_color_mobile: gradient_color_mobile,
+    enable_text_color_mobile: enable_text_color_mobile
 -%}
 
 <{{tag}} class="text text--{{id}} {{ additional_classes }}" {{ additional_attributes }}>

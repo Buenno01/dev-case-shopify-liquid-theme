@@ -17,13 +17,32 @@
         {% render 'if-exists-css' key: 'text-align', value: text_alignment_mobile %}
         {% render 'if-exists-css' key: 'line-height', value: line_height %}
         {% render 'if-exists-css' key: 'text-transform', value: text_transform %}
-        {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+        {% if font_weight_mobile and enable_text_color_mobile == true -%}
+            {% render 'if-exists-css' key: 'font-weight', value: font_weight_mobile %}
+        {% else -%}
+            {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+        {% endif %}
         {% render 'if-exists-css' key: 'font-style', value: text_style %}
         {% render 'if-exists-css' key: 'text-decoration', value: text_decoration %}
-        {% render 'if-exists-css' key: 'color', value: text_color %}
+        {% if text_color_mobile -%}
+            {% render 'if-exists-css' key: 'color', value: text_color_mobile %}
+        {% else -%}
+            {% render 'if-exists-css' key: 'color', value: text_color %}
+        {% endif %}
         {% render 'if-exists-css' key: 'font-family', value: font_family %}
 
-        {% if apply_gradient_to_bold_text == true -%}
+        {% if apply_gradient_to_bold_text_mobile == true -%}
+            @media screen and (max-width: 768px) {
+                :is(b, strong) {
+                    background: {{ gradient_color_mobile }};
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    color: transparent;
+                    font-weight: inherit;
+                }
+            }
+        {% elsif apply_gradient_to_bold_text == true and enable_text_color_mobile == false -%}
             :is(b, strong) {
                 background: {{ gradient_color }};
                 -webkit-background-clip: text;
@@ -35,9 +54,36 @@
         {% endif %}
     }
 
+    .text--{{ id }} :is(b, strong) {
+        {% if font_weight_mobile and enable_text_color_mobile == true -%}
+            {% render 'if-exists-css' key: 'font-weight', value: font_weight_mobile %}
+        {% else -%}
+            {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+        {% endif %}
+    }
+
     @media screen and (min-width: 768px) {
         .text--{{ id }} {
             {% render 'if-exists-css' key: 'text-align', value: text_alignment %}
+            {% render 'if-exists-css' key: 'color', value: text_color %}
+            {% if apply_gradient_to_bold_text == true and enable_text_color_mobile == true -%}
+                :is(b, strong) {
+                    background: {{ gradient_color }};
+                    -webkit-background-clip: text;
+                    background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    color: transparent;
+                    font-weight: inherit;
+                }
+            {% endif %}
+            {% if font_weight and enable_text_color_mobile == true -%}
+                {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+            {% endif %}
+            :is(b, strong) {
+                {% if font_weight and enable_text_color_mobile == true -%}
+                    {% render 'if-exists-css' key: 'font-weight', value: font_weight %}
+                {% endif %}
+            }
         }
     }
 </style>
