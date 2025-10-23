@@ -55,13 +55,12 @@
     }
 
     {% if border == 'gradient' %}
-    .group--{{id}} .group__inner--{{id}} {
+    .group--{{id}} {
         {% render 'if-exists-css' key: 'background', value: background %}
     }
     {% endif %}
 
-    .group--{{id}} .group__items--{{id}} {
-        width: 100%;
+    .group--{{id}} {
         padding-inline: {{ padding_inline }};
         padding-block: {{ padding_block }};
         {% if gap != blank and gap_mobile != blank %}
@@ -74,7 +73,7 @@
     }
 
     @media screen and (min-width: 768px) {
-        .group--{{id}} .group__items--{{id}} {
+        .group--{{id}} {
             {% render 'if-exists-css' key: 'flex-direction', value: direction %}
             {% render 'if-exists-css' key: 'align-items', value: alignment %}
             {% render 'if-exists-css' key: 'justify-content', value: justify %}
