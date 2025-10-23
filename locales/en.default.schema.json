@@ -262,6 +262,41 @@
                 "text": {
                     "label": "Text content"
                 },
+                "text_color_options": {
+                    "label": "Text color options",
+                    "options": {
+                        "h_primary": {
+                            "label": "Heading primary"
+                        },
+                        "h_secondary": {
+                            "label": "Heading secondary"
+                        },
+                        "h_invert": {
+                            "label": "Heading invert"
+                        },
+                        "b_primary": {
+                            "label": "Body primary"
+                        },
+                        "b_secondary": {
+                            "label": "Body secondary"
+                        },
+                        "b_invert": {
+                            "label": "Body invert"
+                        },
+                        "a_primary": {
+                            "label": "Accent primary"
+                        },
+                        "a_secondary": {
+                            "label": "Accent secondary"
+                        },
+                        "a_mute": {
+                            "label": "Accent mute"
+                        },
+                        "custom": {
+                            "label": "Custom"
+                        }
+                    }
+                },
                 "tag": {
                     "label": "Text hierarchy",
                     "options": {

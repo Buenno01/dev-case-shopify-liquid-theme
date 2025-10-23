@@ -9,7 +9,11 @@
     if inherit_text_color
         assign text_color = blank
     else
-        assign text_color = blck.text_color
+        if blck.text_color_options == 'custom'
+            assign text_color = blank
+        else
+            assign text_color = blck.text_color_options
+        endif
     endif
     assign text_alignment = blck.text_alignment
     assign text_alignment_mobile = blck.text_alignment_mobile
@@ -322,11 +326,60 @@
             "default": true
         },
         {
+            "type": "select",
+            "id": "text_color_options",
+            "label": "t:blocks.text.settings.text_color_options.label",
+            "info": "t:blocks.text.settings.text_color.info",
+            "visible_if": "{{ block.settings.inherit_text_color == false }}",
+            "options": [
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_primary.label",
+                    "value": "var(--color-text-heading-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_secondary.label",
+                    "value": "var(--color-text-heading-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.h_invert.label",
+                    "value": "var(--color-text-heading-invert)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_primary.label",
+                    "value": "var(--color-text-body-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_secondary.label",
+                    "value": "var(--color-text-body-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.b_invert.label",
+                    "value": "var(--color-text-body-invert)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_primary.label",
+                    "value": "var(--color-accent-primary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_secondary.label",
+                    "value": "var(--color-accent-secondary)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.a_mute.label",
+                    "value": "var(--color-accent-mute)"
+                },
+                {
+                    "label": "t:blocks.text.settings.text_color_options.options.custom.label",
+                    "value": "custom"
+                }
+            ]
+        },
+        {
             "type": "color",
             "id": "text_color",
             "label": "t:blocks.text.settings.text_color.label",
             "info": "t:blocks.text.settings.text_color.info",
-            "visible_if": "{{ block.settings.inherit_text_color == false }}"
+            "visible_if": "{{ block.settings.inherit_text_color == false and block.settings.text_color_options == 'custom' }}"
         },
         {
             "type": "checkbox",
